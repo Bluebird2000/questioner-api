@@ -15,7 +15,22 @@
 		container.classList.remove('hover-right');
 	});
 })();
-/************************/
+/************************
+User login validation 
+************************/
+function loginForm() {
+	var userEmail = document.getElementById("userEmail").value;
+	var userPassword = document.getElementById("userPassword").value;
+	var loginBtn = document.getElementById("loginBtn");
+		loginBtn.addEventListener('click', (e) => {
+			e.preventDefault();
+			if(userEmail === ""){
+				return document.getElementById("emailError").innerHTML = "please the email field is required";
+			}else if(userPassword === ""){
+				return document.getElementById("passwordError").innerHTML = "please the password field is required";
+			}
+		});
+}
 /*********************
 User signup validation
 *********************/
@@ -39,5 +54,6 @@ function signupForm() {
 		});
 }
 (() => {
+	loginForm();
 	signupForm();
 })();
