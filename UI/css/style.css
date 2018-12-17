@@ -611,6 +611,147 @@ p.meetup-content{
 	text-align: center;
 }
 
+
+#all-meetup-section{
+	background:url('../img/login-banner.jpg') no-repeat center center;
+	height: 50%;
+	padding-top: 5%;
+	margin-top:0%;
+	width: 100%;
+	margin-bottom: 15%;
+}
+.all-section-meetup-wrapper{
+	margin-bottom: 25% !important;
+}
+#all-meetup-section h1{
+	text-align: center;
+	text-transform: uppercase;
+	font-family: "Montserrat";
+}
+p.meetup-content{
+	width: 80%;
+	margin:auto;
+	padding: 1%;
+	font-size: 18px;
+	text-align: center;
+    font-family: 'Open Sans', sans-serif;
+
+}
+#all-meetup-section .all-section-meetup-wrapper{
+	width: 70%;
+	margin:auto;
+}
+.all-section-meetup-wrapper .row{
+	width: 20%;
+	text-align: center;
+	padding-left: .5%;
+	padding-right: 2%;
+	margin-right: 2%;
+	padding-top: 2%;
+	padding-bottom: 5%;
+	transition: all 0.3s ease 0s;
+	background:;
+	border: 2px solid #f7f7f7;
+	-webkit-box-shadow: 0px 0px 5px 1px #f7f7f7;
+	-moz-box-shadow: 0px 0px 5px 1px #f7f7f7;
+	-o-box-shadow: 0px 0px 5px 1px #f7f7f7;
+	-ms-box-shadow: 0px 0px 5px 1px #f7f7f7;
+    box-shadow: 0px 0px 5px 1px #f7f7f7;
+    z-index: 999;
+	float: left;
+}
+.all-section-meetup-wrapper .row i {
+	color: #9816f4;
+}
+.all-section-meetup-wrapper .row img{
+	width: 25%;
+}
+.all-section-meetup-wrapper .row:hover i{
+}
+.all-section-meetup-wrapper .row:hover{
+	opacity: .8;
+	-webkit-box-shadow: 0px 0px 5px 1px #f7f7f7;
+	-moz-box-shadow: 0px 0px 5px 1px #f7f7f7;
+	-o-box-shadow: 0px 0px 5px 1px #f7f7f7;
+	-ms-box-shadow: 0px 0px 5px 1px #f7f7f7;
+    box-shadow: 0px 0px 5px 1px #f7f7f7;
+}
+.all-section-meetup-wrapper .row:hover a{
+	color: inherit;
+}
+.all-section-meetup-wrapper .row:before{
+	content: "";
+	transition: all 0.3s ease 0s;
+}
+.all-section-meetup-wrapper .row:hover:before{
+	top: 0;
+	right: 0;
+}
+.all-section-meetup-wrapper .row a{
+	text-decoration: none;
+	color: #000;
+	font-weight: 600;
+	text-transform: uppercase;
+	display: inline-block;
+}
+.all-section-meetup-wrapper .row p {
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #footer-main{
 	width: 100%;
 	height: auto;
@@ -739,6 +880,10 @@ p.meetup-content{
 		font-size: 24px;
 	}
 	.section-meetup-wrapper .row{
+		width: 40%;
+		padding-bottom: 5%;
+	}
+	.all-section-meetup-wrapper .row{
 		width: 40%;
 		padding-bottom: 5%;
 	}
@@ -873,6 +1018,10 @@ p.meetup-content{
 }
 
 @media(max-width: 480px){
+	.all-section-meetup-wrapper .row{
+		width: 80%;
+		padding-bottom: 5%;
+	}
 	.wrapper-left{
 		top: 55%;
 		width: 80%;
