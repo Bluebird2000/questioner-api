@@ -156,12 +156,14 @@ p.login-title{
 }
 
 .login-section h1{
+	font-size: 32px;
+	font-weight: bold;
 	text-align: center;
-	color: #000000;
-	font-family:'Open Sans';
-	text-transform: uppercase;
+	margin-top: 15px;
+	font-family: "Cookie";
 
 }
+
 .login-section button{
 	background: #9816f4;
 	margin-top: 5%;
