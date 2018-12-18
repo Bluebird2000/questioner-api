@@ -158,6 +158,8 @@ p.login-title{
 .login-section h1{
 	text-align: center;
 	color: #000000;
+	font-family:'Open Sans';
+	text-transform: uppercase;
 
 }
 .login-section button{
