@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crowd-source questions for a meetup :: Questioner</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Crowd-source questions for a meetup. ​Questioner​​ helps the meetup organizer prioritize  questions to be answered. Other users can vote on asked questions and they bubble to the top  or bottom of the log" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://fonts.googleapis.com/css?family=Cookie|Fredoka+One|Montserrat" rel="stylesheet">
+</head>
+<body>
+	<header id="top">
+		<div class="background"></div>
+		<div class="content">
+			<nav>
+				<div class="logo"><i class="fa fa-meetup" aria-hidden="true"></i>Questioner</div>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="questioners.html">Questioners</a></li>
+					<li><a href="meetup.html">Find Meetup</a></li>
+					<li><a href="feedback.html">Feedback</a></li>
+					<li class="active"><a href="login.html">Signin</a></li>
+				</ul>
+			</nav>
+			<div class="wrapper-left">
+				<h1>Explore the unexploited territories</h1>
+				<p>Questioner​​ helps the meetup organizer prioritize  questions to be answered. Other users can vote on asked questions and they bubble to the top  or bottom of the log </p>
+				<!-- <a href="#">Get started  <i class="fa fa-arrow-right" aria-hidden="true"></i> </a> -->
+			</div>
+		</div>
+	</header>
+	</div>
+		<div id="questioner-questions-wrapper">
+			<div class="social-icons">
+				<ul>
+					<li><i class="fa fa-facebook" aria-hidden="true"></i></li>
+					<li><i class="fa fa-twitter" aria-hidden="true"></i></li>
+					<li><i class="fa fa-google-plus" aria-hidden="true"></i></li>
+					<li><i class="fa fa-linkedin" aria-hidden="true"></i></li>
+					<li><i class="fa fa-pinterest" aria-hidden="true"></i></li>
+				</ul>
+			</div>
+			<div class="specific-meetup">
+				<div class="created-by">
+					<p>Created By: Ahmad Lateef <i class="fa fa-admin" aria-hidden="true"></i></p>
+				</div>
+				<img src="img/post.png">
+				<h3>React summit</h3>
+				<p>React is having a huge impact on the way we think about Web UI development. Our Meetups are opportunity to learn why and share experiences. Meet the people attending this event around the globe. This will be the best opportunity to meet and share wonderful experience.</p>
+			</div>
+			<div class="specific-meetup-questions">
+				<h4><span class="questioner-username">Mentos</span> : Does meetup provides advancement for personal and professional growth? <br />202 <i class="fa fa-thumbs-up" aria-hidden="true"></i> | <i class="fa fa-thumbs-down" aria-hidden="true"></i> 2 | <i class="fa fa-comment" aria-hidden="true"></i> 7 </h4>
+				<!-- <span>comment <i class="fa fa-plus" aria-hidden="true"></i></span> -->
+				<div class="questioner-post-wrapper-comment">
+					Add a comment <span class="accordion" type="button"><i class="fa fa-plus" aria-hidden="true"></i></span>
+					<div class="questioner-form-field">
+						<form class="question-box" action="" method="post">
+							<textarea rows="4" cols="50">
+							</textarea> 
+							<input type="submit" name="" value="submit">
+						</form>
+					</div>	
+				</div>
+			</div><!-- 
+			<div class="specific-meetup-questions">
+				<h4> <span class="questioner-username">Vipercarder</span> : I am a very big fan of vue js, and i think there should be a meetup for vue js? <br />122 <i class="fa fa-thumbs-up" aria-hidden="true"></i> | <i class="fa fa-thumbs-down" aria-hidden="true"></i> 8 | <i class="fa fa-comment" aria-hidden="true"></i> 0</h4>
+				<span>comment <i class="fa fa-plus" aria-hidden="true"></i></span>
+
+			</div>
+			<div class="specific-meetup-questions">
+				<h4><span class="questioner-username">Bluebird2000</span> : Is this platform only for javascript full stack? Any laravel developer here? <br />22 <i class="fa fa-thumbs-up" aria-hidden="true"></i> | <i class="fa fa-thumbs-down" aria-hidden="true"></i> 4 <i class="fa fa-comment" aria-hidden="true"></i> 1 </h4>
+				<span>comment <i class="fa fa-plus" aria-hidden="true"></i></span>
+
+			</div> -->
+			
+		</div>
+		<div class="questioner-post-wrapper">
+					Post a question <button class="accordion" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+					<div class="questioner-form-field">
+						<form class="question-box" action="" method="post">
+							<!-- <input type="text" name="" placeholder="title"> -->
+							You can drop a question here inside the field box
+							<textarea rows="4" cols="50">
+								
+							</textarea> 
+							<input type="submit" name="" value="submit">
+						</form>
+					</div>	
+		</div>
+		<div id="footer-bottom">
+			<p>&copy;<script>document.write(new Date().getFullYear());</script> <a href="#">Crowd-source questions for a meetup </a></p>
+		</div>
+		<a id="back-to-top" href="#"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+	<script type="text/javascript">
+		let questioners = document.getElementsByClassName("accordion");
+		let i;
+		for(i = 0; i < questioners.length; i++){
+			questioners[i].onclick = function(){
+				this.classList.toggle("active");
+				var panel = this.nextElementSibling;
+				if(panel.style.maxHeight){
+					panel.style.maxHeight = null;
+				}else{
+					panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+			}
+		}
+	</script>
+</body>
+</html>
