@@ -134,3 +134,52 @@ ul li a:hover{
 #sidebar-btn span:nth-child(3){
 	width: 50%;
 }
+p.footer-bottom-flat{
+	text-align: center;
+	margin-top:8%;
+}
+.questioner-post-wrapper{
+	margin-bottom: 10%;
+	width: 80%;
+	margin: auto;
+
+}
+.questioner-form-field .question-box input[type="text"]{
+	border: 0;
+	background-color: #f8f8f8;
+	display: block;
+	text-align: center;
+	border: 2px solid #ccc;
+	padding: 14px 10px;
+	width: 78%;
+	outline: none;
+	color: #000;
+	border-radius: 24px;
+	transition: 0.25s;
+	margin-bottom: 2%;
+}
+.questioner-form-field .question-box textarea {
+  width: 80%;
+  margin: auto;
+  padding: 12px 20px;
+  max-height: 30%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+.questioner-form-field .question-box input[type="submit"]{
+	background: #9816f4;
+	margin-bottom: 0%;
+	padding: 2%;
+	color: #fff;
+    border: none;
+	font-size: 14px;
+	border-radius: 40px;
+	width: 18%;
+	cursor: pointer;
+	-webkit-transition: all 1s;
+	transition: all 1s;
+	max-height: inherit;
+}
