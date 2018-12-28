@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "",
+    "pretest": "eslint .",
+    "lintfix": "eslint . --fix",
     "dev": "nodemon --exec babel-node server.js",
     "test": "babel-node node_modules/mocha/bin/_mocha test/*.js",
     "coverage": "babel-node ./node_modules/babel-istanbul/lib/cli cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec --timeout 10000 test/*.js",
