@@ -8,6 +8,9 @@ Users can create an account or login if they already have one, vote on asked que
 
 Build status of continuous integration i:e travis.
 
+[![Build Status](https://travis-ci.org/Bluebird2000/questioner-api.svg?branch=develop)](https://travis-ci.org/Bluebird2000/questioner-api)
+[![Coverage Status](https://coveralls.io/repos/github/Bluebird2000/questioner-api/badge.svg?branch=develop)](https://coveralls.io/github/Bluebird2000/questioner-api?branch=develop)
+
 #### Technologies
  * [ECMAScript 2015 - ES6](http://es6-features.org/): This is the newest version of JavsScript with new features such as arrow functions, spread and rest operators and many more.
  * [Babel:](https://babeljs.io/)  Babel is used to transpile es6+ js code down to es5.

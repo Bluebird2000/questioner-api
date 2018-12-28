@@ -15,3 +15,6 @@ coverage
 
 # Optional eslint cache
 .eslintcache
+
+# 
+coveralls.yml
