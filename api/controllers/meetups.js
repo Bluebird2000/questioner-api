@@ -1,6 +1,6 @@
 import meetupValidation from '../models/meetup';
 
-const createMeetup = [
+const meetups = [
   {
     id: 1,
     createdOn: new Date().getFullYear(),
@@ -29,17 +29,25 @@ exports.create_meetup = (req, res) => {
     return;
   }
   const data = {
-    id: createMeetup.length + 1,
+    id: meetups.length + 1,
     createdOn: req.body.createdOn,
     location: req.body.location,
     topic: req.body.topic,
     happeningOn: req.body.happeningOn,
     tags: req.body.tags,
   };
-  createMeetup.push(data);
+  meetups.push(data);
   res.status(200)
     .send({
       status: 200,
       data,
+    });
+};
+
+exports.get_all_meetups = (req, res) => {
+  res.status(200)
+    .send({
+      status: 200,
+      meetups,
     });
 };
