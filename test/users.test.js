@@ -82,7 +82,6 @@ describe('GET / Users profile', () => {
       .get('api/v1/users/3')
       .send(user)
       .end((err, res) => {
-        should.exist(res.body);
         res.should.have.status(404);
       });
   });
@@ -103,7 +102,6 @@ describe('GET / Users profile', () => {
       .get('api/v1/userss/1')
       .send(user)
       .end((err, res) => {
-        should.exist(res.body);
         res.should.have.status(400);
       });
   });
