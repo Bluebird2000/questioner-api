@@ -4,7 +4,7 @@ import chaiHttp from 'chai-http';
 
 import { app } from '../server';
 
-chai.should();
+const should = chai.should();
 
 chai.use(chaiHttp);
 describe('POST / Users', () => {
