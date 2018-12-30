@@ -8,4 +8,6 @@ router.post('/', MeetupController.create_meetup);
 
 router.get('/', MeetupController.get_all_meetups);
 
+router.get('/:id', MeetupController.get_single_meetup);
+
 module.exports = router;
