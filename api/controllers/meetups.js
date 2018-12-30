@@ -53,8 +53,8 @@ exports.get_all_meetups = (req, res) => {
 };
 
 exports.get_single_meetup = (req, res) => {
-  const user = meetups.find(m => m.id === parseInt(req.params.id));
-  if (!user) {
+  const meetup = meetups.find(m => m.id === parseInt(req.params.id));
+  if (!meetup) {
     res.status(404)
       .send({
         status: 404,
@@ -62,5 +62,38 @@ exports.get_single_meetup = (req, res) => {
       });
     return;
   }
-  res.send(user).status(200);
+  res.status(200)
+    .send({
+      status: 200,
+      meetup,
+    });
+};
+
+exports.update_single_meetup = (req, res) => {
+  const meetup = meetups.find(m => m.id === parseInt(req.params.id));
+  const { error } = meetupValidation(req.body);
+  if (!meetup) {
+    return res.status(404)
+      .send({
+        status: 404,
+        error: `Meetup with the given ID: ${req.params.id} does not exist`,
+      });
+  }
+  if (error) {
+    const err = error.details[0].message;
+    return res.status(400)
+      .send({
+        status: 400,
+        error: err,
+      });
+  }
+  meetup.createdOn = req.body.createdOn;
+  meetup.location = req.body.location;
+  meetup.topic = req.body.topic;
+  meetup.happeningOn = req.body.happeningOn;
+  res.status(200)
+    .send({
+      status: 200,
+      meetup,
+    });
 };
