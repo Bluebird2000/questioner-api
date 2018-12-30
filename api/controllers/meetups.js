@@ -107,9 +107,9 @@ exports.delete_single_meetup = (req, res) => {
         error: `Meetup with the given ID: ${req.params.id} does not exist`,
       });
   }
-    return res.status(200)
-      .send({
-        status: 200,
-        meetup,
-      });
+  return res.status(200)
+    .send({
+      status: 200,
+      meetup,
+    });
 };
