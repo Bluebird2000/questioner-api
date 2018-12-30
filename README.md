@@ -30,4 +30,3 @@ Build status of continuous integration i:e travis.
 
 #### Author
 - Ahmad Lateef
-

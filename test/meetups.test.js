@@ -113,3 +113,30 @@ describe('PUT / update a single meetup record', () => {
       });
   });
 });
+
+describe('DELETE / update a single meetup record', () => {
+  it('should return status code 400 if meetup record to be deleted does not exist', (done) => {
+    chai.request(app)
+      .delete('/api/v1/meetups/4')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+
+  it('should return status code 200 if meetup record is successfully deleted', (done) => {
+    chai.request(app)
+      .delete('/api/v1/meetups/1')
+      .send({
+        createdOn: new Date().getFullYear(),
+        location: 'Ajah',
+        topic: 'React summit',
+        happeningOn: 'March 7th 2019',
+        tags: ['nodejs', 'react', 'mongo', 'express'],
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});
