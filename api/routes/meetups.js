@@ -10,4 +10,6 @@ router.get('/', MeetupController.get_all_meetups);
 
 router.get('/:id', MeetupController.get_single_meetup);
 
+router.put('/:id', MeetupController.update_single_meetup);
+
 module.exports = router;
