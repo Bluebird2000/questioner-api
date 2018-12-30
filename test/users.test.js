@@ -109,3 +109,42 @@ describe('GET / Users profile', () => {
   //     });
   // });
 });
+describe('PUT / update user profile', () => {
+  it('should return status code 400 if user profile parameters to be updated is not valid', (done) => {
+    chai.request(app)
+      .put('/api/v1/users/1')
+      .send({})
+      .end((err, res) => {
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+
+  it('should return status code 404 if user record not found', (done) => {
+    chai.request(app)
+      .put('/api/v1/users/4')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+
+  it('should return status code 200 if user record was successfully updated', (done) => {
+    chai.request(app)
+      .put('/api/v1/users/1')
+      .send({
+        firstname: 'Ahmad',
+        lastname: 'Lateef',
+        othername: 'Olamilekan',
+        email: 'lateefahmad3868@gmail.com',
+        phoneNumber: '08097012219',
+        username: 'Bluebird2000',
+        password: 'default111',
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});
