@@ -51,3 +51,16 @@ exports.get_all_meetups = (req, res) => {
       meetups,
     });
 };
+
+exports.get_single_meetup = (req, res) => {
+  const user = meetups.find(m => m.id === parseInt(req.params.id));
+  if (!user) {
+    res.status(404)
+      .send({
+        status: 404,
+        error: `Meetup with the given ID: ${req.params.id} does not exist`,
+      });
+    return;
+  }
+  res.send(user).status(200);
+};
