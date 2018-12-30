@@ -9,7 +9,7 @@ const userValidation = (qUsers) => {
     phoneNumber: Joi.string().min(3).max(50).required(),
     username: Joi.string().min(3).max(50).required(),
     password: Joi.string().min(3).max(50).required(),
-    isAdmin: Joi.string().required(),
+    // isAdmin: Joi.string().required(),
   };
   return Joi.validate(qUsers, userSchema);
 };
