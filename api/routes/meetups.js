@@ -12,4 +12,6 @@ router.get('/:id', MeetupController.get_single_meetup);
 
 router.put('/:id', MeetupController.update_single_meetup);
 
+router.delete('/:id', MeetupController.delete_single_meetup);
+
 module.exports = router;
