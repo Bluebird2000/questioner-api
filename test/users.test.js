@@ -7,10 +7,10 @@ import { app } from '../server';
 const should = chai.should();
 
 chai.use(chaiHttp);
+
 describe('POST / Users', () => {
   it('should return status code 200 and create a new user account', (done) => {
     const newUser = {
-      id: 1,
       firstname: 'Ahmad',
       lastname: 'Lateef',
       othername: 'Olamilekan',
@@ -18,15 +18,12 @@ describe('POST / Users', () => {
       phoneNumber: '08097012219',
       username: 'Bluebird2000',
       password: 'default111',
-      registered: new Date(),
-      isAdmin: true,
     };
     chai.request(app)
       .post('/api/v1/users')
       .send(newUser)
       .end((err, res) => {
-        // res.should.have.status(200);
-        res.body.should.be.a('object');
+        res.should.have.status(200);
         done();
       });
   });
@@ -65,49 +62,15 @@ describe('GET / Users profile', () => {
         done();
       });
   });
-  // it('should return status 404 if user not found', (done) => {
-  //   const user = {
-  //     id: 1,
-  //     firstname: 'Ahmad',
-  //     lastname: 'Lateef',
-  //     othername: 'Olamilekan',
-  //     email: 'lateefahmad3868@gmail.com',
-  //     phoneNumber: '08097012219',
-  //     username: 'Bluebird2000',
-  //     password: 'default111',
-  //     registered: new Date(),
-  //     isAdmin: true,
-  //   };
-  //   chai.request(app)
-  //     .get('api/v1/users/12')
-  //     .send(user)
-  //     .end((err, res) => {
-  //       console.log(res);
-  //       res.should.have.status(404);
-  //       done();
-  //     });
-  // });
-  // it('should return status 400 if API call is a bad request', (done) => {
-  //   const user = {
-  //     id: 1,
-  //     firstname: 'Ahmad',
-  //     lastname: 'Lateef',
-  //     othername: 'Olamilekan',
-  //     email: 'lateefahmad3868@gmail.com',
-  //     phoneNumber: '08097012219',
-  //     username: 'Bluebird2000',
-  //     password: 'default111',
-  //     registered: new Date(),
-  //     isAdmin: true,
-  //   };
-  //   chai.request(app)
-  //     .get('api/v1/userss/1')
-  //     .send(user)
-  //     .end((err, res) => {
-  //       console.log(res);
-  //       done();
-  //     });
-  // });
+  it('should return status code 404 if user record not found', (done) => {
+    chai.request(app)
+      .get('/api/v1/users/4')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
 });
 describe('PUT / update user profile', () => {
   it('should return status code 400 if user profile parameters to be updated is not valid', (done) => {
