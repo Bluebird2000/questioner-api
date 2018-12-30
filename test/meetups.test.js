@@ -11,8 +11,15 @@ describe('POST / Meetups', () => {
   it('should return status code 200 and create a new meetup record', (done) => {
     chai.request(app)
       .post('/api/v1/meetups')
+      .send({
+        createdOn: new Date().getFullYear(),
+        location: 'Ajah',
+        topic: 'React summit',
+        happeningOn: 'March 7th 2019',
+        tags: ['nodejs', 'react', 'mongo', 'express'],
+      })
       .end((err, res) => {
-        res.body.should.be.a('object');
+        res.should.have.status(200);
         done();
       });
   });
@@ -70,9 +77,10 @@ describe('GET / single meetup', () => {
 });
 
 describe('PUT / update a single meetup record', () => {
-  it('should return status code 200 if meetup record does exist', (done) => {
+  it('should return status code 400 if meetup record parameters to be updated is not valid', (done) => {
     chai.request(app)
       .put('/api/v1/meetups/1')
+      .send({})
       .end((err, res) => {
         res.body.should.be.a('object');
         done();
@@ -89,13 +97,19 @@ describe('PUT / update a single meetup record', () => {
       });
   });
 
-  // it('should return status code 400 if meetup to be updated is empty', (done) => {
-  //   chai.request(app)
-  //     .put('/api/v1/meetups/1')
-  //     .send({})
-  //     .end((err, res) => {
-  //       res.should.have.status(400);
-  //       done();
-  //     });
-  // });
+  it('should return status code 200 if meetup record to be updated exist', (done) => {
+    chai.request(app)
+      .put('/api/v1/meetups/1')
+      .send({
+        createdOn: new Date().getFullYear(),
+        location: 'Ajah',
+        topic: 'React summit',
+        happeningOn: 'March 7th 2019',
+        tags: ['nodejs', 'react', 'mongo', 'express'],
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
 });
