@@ -15,11 +15,42 @@ describe('POST / Meetups', () => {
         createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
-        happeningOn: 'March 7th 2019',
+        happeningOn: '3 January 2019',
         tags: ['nodejs', 'react', 'mongo', 'express'],
       })
       .end((err, res) => {
+        console.log(res.status);
         res.should.have.status(200);
+        done();
+      });
+  });
+  it('should return status code 422 if meetup date is is not a valid date', (done) => {
+    chai.request(app)
+      .post('/api/v1/meetups')
+      .send({
+        createdOn: new Date().getFullYear(),
+        location: 'Ajah',
+        topic: 'React summit',
+        happeningOn: '323 January 2019',
+        tags: ['nodejs', 'react', 'mongo', 'express'],
+      })
+      .end((err, res) => {
+        res.should.have.status(422);
+        done();
+      });
+  });
+  it('should return status code 422 if meetup date is a past date and not a future date', (done) => {
+    chai.request(app)
+      .post('/api/v1/meetups')
+      .send({
+        createdOn: new Date().getFullYear(),
+        location: 'Ajah',
+        topic: 'React summit',
+        happeningOn: '23 January 2018',
+        tags: ['nodejs', 'react', 'mongo', 'express'],
+      })
+      .end((err, res) => {
+        res.should.have.status(422);
         done();
       });
   });
@@ -97,18 +128,48 @@ describe('PUT / update a single meetup record', () => {
       });
   });
 
-  it('should return status code 200 if meetup record to be updated exist', (done) => {
+  it('should return status code 200 if meetup record was updated successful', (done) => {
     chai.request(app)
       .put('/api/v1/meetups/1')
       .send({
         createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
-        happeningOn: 'March 7th 2019',
+        happeningOn: '1 febuary 2019',
         tags: ['nodejs', 'react', 'mongo', 'express'],
       })
       .end((err, res) => {
         res.should.have.status(200);
+        done();
+      });
+  });
+  it('should return status code 422 if meetup date is is not a valid date', (done) => {
+    chai.request(app)
+      .put('/api/v1/meetups/1')
+      .send({
+        createdOn: new Date().getFullYear(),
+        location: 'Ajah',
+        topic: 'React summit',
+        happeningOn: '323 January 2019',
+        tags: ['nodejs', 'react', 'mongo', 'express'],
+      })
+      .end((err, res) => {
+        res.should.have.status(422);
+        done();
+      });
+  });
+  it('should return status code 422 if meetup date is a past date and not a future date', (done) => {
+    chai.request(app)
+      .put('/api/v1/meetups/1')
+      .send({
+        createdOn: new Date().getFullYear(),
+        location: 'Ajah',
+        topic: 'React summit',
+        happeningOn: '23 January 2018',
+        tags: ['nodejs', 'react', 'mongo', 'express'],
+      })
+      .end((err, res) => {
+        res.should.have.status(422);
         done();
       });
   });

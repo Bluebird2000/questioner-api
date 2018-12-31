@@ -36,6 +36,21 @@ exports.create_meetup = (req, res) => {
     happeningOn: req.body.happeningOn,
     tags: req.body.tags,
   };
+  if (Number.isNaN(new Date(req.body.happeningOn).getTime())) {
+    res.status(422)
+      .send({
+        status: 422,
+        error: 'please provide a valid meetup date',
+      });
+    return;
+  }
+  if (new Date(req.body.happeningOn).getTime() < new Date().getTime()) {
+    res.status(422).send({
+      status: 422,
+      error: 'please provide a future meetup date not a past date',
+    });
+    return;
+  }
   meetups.push(data);
   res.status(200)
     .send({
@@ -87,10 +102,24 @@ exports.update_single_meetup = (req, res) => {
         error: err,
       });
   }
+  if (Number.isNaN(new Date(req.body.happeningOn).getTime())) {
+    return res.status(422)
+      .send({
+        status: 422,
+        error: 'please provide a valid meetup date',
+      });
+  }
+  if (new Date(req.body.happeningOn).getTime() < new Date().getTime()) {
+    return res.status(422).send({
+      status: 422,
+      error: 'please provide a future meetup date not a past date',
+    });
+  }
   meetup.createdOn = req.body.createdOn;
   meetup.location = req.body.location;
   meetup.topic = req.body.topic;
   meetup.happeningOn = req.body.happeningOn;
+  meetup.tags = req.body.tags;
   return res.status(200)
     .send({
       status: 200,
