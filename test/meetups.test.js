@@ -19,12 +19,11 @@ describe('POST / Meetups', () => {
         tags: ['nodejs', 'react', 'mongo', 'express'],
       })
       .end((err, res) => {
-        console.log(res.status);
         res.should.have.status(200);
         done();
       });
   });
-  it('should return status code 422 if meetup date is is not a valid date', (done) => {
+  it('should return status code 422 if meetup date is not a valid date', (done) => {
     chai.request(app)
       .post('/api/v1/meetups')
       .send({
@@ -54,7 +53,7 @@ describe('POST / Meetups', () => {
         done();
       });
   });
-  it('should return status code 400 if api parameters are not valid', (done) => {
+  it('should return status code 400 if api parameters are empty or invalid', (done) => {
     chai.request(app)
       .post('/api/v1/meetups')
       .send({})
@@ -143,7 +142,7 @@ describe('PUT / update a single meetup record', () => {
         done();
       });
   });
-  it('should return status code 422 if meetup date is is not a valid date', (done) => {
+  it('should return status code 422 if meetup date is not a valid date', (done) => {
     chai.request(app)
       .put('/api/v1/meetups/1')
       .send({
