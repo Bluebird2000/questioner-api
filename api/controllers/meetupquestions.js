@@ -9,6 +9,7 @@ const questions = [
     createdOn: new Date(),
     body: 'question body.',
     votes: 0,
+    downvotes: 0,
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ const questions = [
     createdOn: new Date(),
     body: 'question body',
     votes: 0,
+    downvotes: 0,
   },
 ];
 exports.create_meetup_question = (req, res) => {
@@ -62,4 +64,21 @@ exports.get_meetup_question = (req, res) => {
       status: 200,
       question,
     });
+};
+
+exports.meetupquestions_upvote = (req, res) => {
+  const question = questions.find(q => q.id === parseInt(req.params.id));
+  if (!question) {
+    res.status(404)
+      .send({
+        status: 404,
+        error: `question with the id ${req.params.id} does not exist`,
+      });
+  } else {
+    question.votes = req.body.votes;
+    res.status(200).send({
+      status: 200,
+      question,
+    });
+  }
 };
