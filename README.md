@@ -10,6 +10,8 @@ Build status of continuous integration i:e travis.
 
 [![Build Status](https://travis-ci.org/Bluebird2000/questioner-api.svg?branch=develop)](https://travis-ci.org/Bluebird2000/questioner-api)
 [![Coverage Status](https://coveralls.io/repos/github/Bluebird2000/questioner-api/badge.svg?branch=develop&cacheBuster=1)](https://coveralls.io/github/Bluebird2000/questioner-api?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b860b2923b24cbb6607b/maintainability)](https://codeclimate.com/github/Bluebird2000/questioner-api/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b860b2923b24cbb6607b/test_coverage)](https://codeclimate.com/github/Bluebird2000/questioner-api/test_coverage)
 
 
 #### Technologies
