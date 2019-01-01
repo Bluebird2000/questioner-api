@@ -94,11 +94,7 @@ exports.update_single_meetup = (req, res) => {
 exports.delete_single_meetup = (req, res) => {
   const meetup = meetups.find(m => m.id === parseInt(req.params.id));
   if (!meetup) {
-    return res.status(404)
-      .send({
-        status: 404,
-        error: `Meetup with the given ID: ${req.params.id} does not exist`,
-      });
+    return res.status(404).send({ status: 404, error: `Meetup with the given ID: ${req.params.id} does not exist` });
   }
   return res.status(200)
     .send({
