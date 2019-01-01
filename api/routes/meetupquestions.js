@@ -6,4 +6,6 @@ const router = express.Router();
 
 router.post('/', MeetupQuestionController.create_meetup_question);
 
+router.get('/:id', MeetupQuestionController.get_meetup_question);
+
 module.exports = router;

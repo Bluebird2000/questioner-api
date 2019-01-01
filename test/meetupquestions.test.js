@@ -34,3 +34,23 @@ describe('POST / Meetup question', () => {
       });
   });
 });
+
+describe('GET / Each meetup question records', () => {
+  it('should return status code 404 if meetup question does not exist', (done) => {
+    chai.request(app)
+      .get('/api/v1/questions/6')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+
+  it('should return status code 200 if meetup question exist', (done) => {
+    chai.request(app)
+      .get('/api/v1/questions/1')
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});
