@@ -46,3 +46,20 @@ exports.create_meetup_question = (req, res) => {
       data,
     });
 };
+
+exports.get_meetup_question = (req, res) => {
+  const question = questions.find(q => q.id === parseInt(req.params.id));
+  if (!question) {
+    res.status(404)
+      .send({
+        status: 404,
+        error: `question with the requested id: ${req.params.id} does not exist`,
+      });
+    return;
+  }
+  res.status(200)
+    .send({
+      status: 200,
+      question,
+    });
+};
