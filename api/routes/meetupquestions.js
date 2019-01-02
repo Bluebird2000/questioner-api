@@ -10,4 +10,7 @@ router.get('/:id', MeetupQuestionController.get_meetup_question);
 
 router.put('/upvote/:id', MeetupQuestionController.meetupquestions_upvote);
 
+router.put('/downvote/:id', MeetupQuestionController.meetupquestions_downvote);
+
+
 module.exports = router;

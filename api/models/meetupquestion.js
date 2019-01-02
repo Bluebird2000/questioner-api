@@ -7,7 +7,8 @@ const meetupquestionValidation = (createMeetupQ) => {
     createdBy: Joi.required(),
     title: Joi.string().required(),
     body: Joi.string().required(),
-    votes: Joi.required(),
+    upvotes: Joi.required(),
+    downvotes: Joi.required(),
   };
   return Joi.validate(createMeetupQ, meetupquestSchema);
 };
