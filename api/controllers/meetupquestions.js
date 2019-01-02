@@ -8,7 +8,7 @@ const questions = [
     title: 'React summit',
     createdOn: new Date(),
     body: 'question body.',
-    votes: 0,
+    upvotes: 0,
     downvotes: 0,
   },
   {
@@ -18,7 +18,7 @@ const questions = [
     title: 'React summit',
     createdOn: new Date(),
     body: 'question body',
-    votes: 0,
+    upvotes: 0,
     downvotes: 0,
   },
 ];
@@ -39,7 +39,8 @@ exports.create_meetup_question = (req, res) => {
     createdOn: req.body.createdOn,
     title: req.body.title,
     body: req.body.body,
-    votes: req.body.votes,
+    upvotes: req.body.downvotes,
+    downvotes: req.body.downvotes,
   };
   questions.push(data);
   res.status(200)
@@ -75,10 +76,26 @@ exports.meetupquestions_upvote = (req, res) => {
         error: `question with the id ${req.params.id} does not exist`,
       });
   } else {
-    question.votes = req.body.votes;
+    question.upvotes = req.body.upvotes;
     res.status(200).send({
       status: 200,
       question,
     });
   }
+};
+exports.meetupquestions_downvote = (req, res) => {
+  const question = questions.find(q => q.id === parseInt(req.params.id));
+  if (!question) {
+    res.status(404)
+      .send({
+        status: 404,
+        error: `question with the id ${req.params.id} does not exist`,
+      });
+    return;
+  }
+  question.downvotes = req.body.downvotes;
+  res.status(200).send({
+    status: 200,
+    question,
+  });
 };
