@@ -39,14 +39,14 @@ exports.create_meetup_question = (req, res) => {
     createdOn: req.body.createdOn,
     title: req.body.title,
     body: req.body.body,
-    upvotes: req.body.downvotes,
+    upvotes: req.body.upvotes,
     downvotes: req.body.downvotes,
   };
   questions.push(data);
   res.status(200)
     .send({
       status: 200,
-      data,
+      data: [data],
     });
 };
 
@@ -63,7 +63,7 @@ exports.get_meetup_question = (req, res) => {
   res.status(200)
     .send({
       status: 200,
-      question,
+      question: [question],
     });
 };
 
@@ -79,7 +79,7 @@ exports.meetupquestions_upvote = (req, res) => {
     question.upvotes = req.body.upvotes;
     res.status(200).send({
       status: 200,
-      question,
+      question: [question],
     });
   }
 };
@@ -96,6 +96,6 @@ exports.meetupquestions_downvote = (req, res) => {
   question.downvotes = req.body.downvotes;
   res.status(200).send({
     status: 200,
-    question,
+    question: [question],
   });
 };
