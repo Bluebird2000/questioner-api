@@ -52,7 +52,7 @@ exports.users_sign_up = (req, res) => {
   res.status(200)
     .send({
       status: 200,
-      data,
+      data: [data],
     });
 };
 
@@ -66,7 +66,7 @@ exports.users_get_user = (req, res) => {
       });
     return;
   }
-  res.send(user).status(200);
+  res.send({ status: 200, data: [user] }).status(200);
 };
 
 exports.users_update_user = (req, res) => {
@@ -97,6 +97,6 @@ exports.users_update_user = (req, res) => {
   return res.status(200)
     .send({
       status: 200,
-      user,
+      data: [user],
     });
 };
