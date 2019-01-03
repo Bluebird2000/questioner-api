@@ -91,22 +91,6 @@ exports.update_single_meetup = (req, res) => {
   return res.status(200).send({ status: 200, meetup: [meetup] });
 };
 
-exports.get_upcoming_meetup = (req, res) => {
-  const now = new Date().getTime();
-  const upComingMeetups = meetups.find(upcoming => new Date(upcoming.happeningOn) < now);
-  if (!upComingMeetups) {
-    res.status(404).send({
-      status: 404,
-      error: 'There are no upcoming meetups',
-    });
-  } else {
-    res.status(200).send({
-      status: 200,
-      data: meetups,
-    });
-  }
-};
-
 exports.delete_single_meetup = (req, res) => {
   const meetup = meetups.find(m => m.id === parseInt(req.params.id));
   if (!meetup) {

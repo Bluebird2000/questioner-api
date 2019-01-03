@@ -10,8 +10,6 @@ router.get('/', MeetupController.get_all_meetups);
 
 router.get('/:id', MeetupController.get_single_meetup);
 
-router.get('/upcoming/meetup', MeetupController.get_upcoming_meetup);
-
 router.put('/:id', MeetupController.update_single_meetup);
 
 router.delete('/:id', MeetupController.delete_single_meetup);
