@@ -6,7 +6,7 @@ const meetups = [
     createdOn: new Date().getFullYear(),
     location: 'Ajah',
     topic: 'React summit',
-    happeningOn: 'March 7th 2019',
+    happeningOn: '2019-01-03',
     tags: ['nodejs', 'react', 'mongo', 'express'],
   },
   {
@@ -14,7 +14,7 @@ const meetups = [
     createdOn: new Date().getFullYear(),
     location: 'Ojodu berger',
     topic: 'Developer fest',
-    happeningOn: 'January 22nd 2019',
+    happeningOn: '2019-01-03',
     tags: ['laravel', 'Django', 'python'],
   },
 ];
@@ -46,7 +46,7 @@ exports.get_all_meetups = (req, res) => {
   res.status(200)
     .send({
       status: 200,
-      meetups: [meetups],
+      meetups,
     });
 };
 
@@ -89,6 +89,22 @@ exports.update_single_meetup = (req, res) => {
   meetup.happeningOn = req.body.happeningOn;
   meetup.tags = req.body.tags;
   return res.status(200).send({ status: 200, meetup: [meetup] });
+};
+
+exports.get_upcoming_meetup = (req, res) => {
+  const now = new Date().getTime();
+  const upComingMeetups = meetups.find(upcoming => new Date(upcoming.happeningOn) < now);
+  if (!upComingMeetups) {
+    res.status(404).send({
+      status: 404,
+      error: 'There are no upcoming meetups',
+    });
+  } else {
+    res.status(200).send({
+      status: 200,
+      data: meetups,
+    });
+  }
 };
 
 exports.delete_single_meetup = (req, res) => {
