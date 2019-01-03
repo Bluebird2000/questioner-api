@@ -8,7 +8,7 @@ chai.should();
 
 chai.use(chaiHttp);
 describe('POST / Rsvps', () => {
-  it('should return status code 200 if meetup exist and create rsvp', (done) => {
+  it('should return status code 200 if meetup exist and create meetup rsvp', (done) => {
     chai.request(app)
       .post('/api/v1/meetups/2/rsvps')
       .send({

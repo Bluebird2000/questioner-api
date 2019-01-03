@@ -4,7 +4,7 @@ const rsvps = [
     meetup: 1,
     user: 1,
     topic: 'React summit',
-    response: 'yes',
+    response: 'no',
   },
 ];
 const meetups = [
