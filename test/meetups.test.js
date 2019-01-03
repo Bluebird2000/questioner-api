@@ -15,7 +15,7 @@ describe('POST / Meetups', () => {
         createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
-        happeningOn: '3 January 2019',
+        happeningOn: '1 December 2019',
         tags: ['nodejs', 'react', 'mongo', 'express'],
       })
       .end((err, res) => {
