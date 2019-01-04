@@ -14,7 +14,7 @@ const meetups = [
     createdOn: new Date().getFullYear(),
     location: 'Ojodu berger',
     topic: 'Developer fest',
-    happeningOn: '2019-01-03',
+    happeningOn: '2019-04-03',
     tags: ['laravel', 'Django', 'python'],
   },
 ];
@@ -65,6 +65,24 @@ exports.get_single_meetup = (req, res) => {
       status: 200,
       meetup: [meetup],
     });
+};
+
+exports.get_upcoming_meetups = (req, res) => {
+  const now = new Date().getTime();
+  const upComingMeetups = meetups.filter(
+    meetup => new Date(meetup.happeningOn).getTime() >= now,
+  );
+  if (!upComingMeetups.length) {
+    res.status(404).send({
+      status: 404,
+      error: 'There are no upcoming meetups',
+    });
+  } else {
+    res.status(200).send({
+      status: 200,
+      data: upComingMeetups,
+    });
+  }
 };
 
 exports.update_single_meetup = (req, res) => {
