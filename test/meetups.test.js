@@ -106,6 +106,17 @@ describe('GET / single meetup', () => {
   });
 });
 
+describe('GET / All upcoming meetup records', () => {
+  it('it should return status code 200 and get list of upcoming meetups', (done) => {
+    chai.request(app)
+      .get('/api/v1/meetups/upcomings/meetup')
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});
+
 describe('PUT / update a single meetup record', () => {
   it('should return status code 400 if meetup record parameters to be updated is not valid', (done) => {
     chai.request(app)
