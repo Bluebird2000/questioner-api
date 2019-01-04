@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import userRoutes from './api/routes/users';
-import meetupRoutes from './api/routes/meetups';
-import meetupQuestionRoutes from './api/routes/meetupquestions';
-import rsvpRoutes from './api/routes/rsvp';
+import userRoutes from './routes/users';
+import meetupRoutes from './routes/meetups';
+import meetupQuestionRoutes from './routes/meetupquestions';
+import rsvpRoutes from './routes/rsvp';
 
 const app = express();
 app.use(bodyParser.json());
