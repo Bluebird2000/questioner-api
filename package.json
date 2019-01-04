@@ -2,10 +2,10 @@
   "name": "questioner-api",
   "version": "1.0.0",
   "description": "Server side application that provides questioner UI client with data",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "build": "",
-    
+    "start": "node server.js",
     "lintfix": "eslint . --fix",
     "dev": "nodemon --exec babel-node server.js",
     "test": "babel-node node_modules/mocha/bin/_mocha test/*.js",
