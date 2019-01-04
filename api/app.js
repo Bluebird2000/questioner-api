@@ -8,11 +8,11 @@ import rsvpRoutes from './routes/rsvp';
 const app = express();
 app.use(bodyParser.json());
 
-app.use('/api/v1/users', userRoutes);
+app.use('/api/v1', userRoutes);
 
-app.use('/api/v1/meetups', meetupRoutes);
+app.use('/api/v1', meetupRoutes);
 
-app.use('/api/v1/questions', meetupQuestionRoutes);
+app.use('/api/v1', meetupQuestionRoutes);
 
 app.use('/api/v1', rsvpRoutes);
 
