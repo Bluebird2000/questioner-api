@@ -4,10 +4,10 @@
   "description": "Server side application that provides questioner UI client with data",
   "main": "server.js",
   "scripts": {
-    "build": "",
-    "start": "babel-node server.js",
+    "build": "babel api -d dist",
+    "start": "npm run build && node ./dist/server",
     "lintfix": "eslint . --fix",
-    "dev": "nodemon --exec babel-node server.js",
+    "dev": "nodemon --exec babel-node api/server.js",
     "test": "babel-node node_modules/mocha/bin/_mocha test/*.js",
     "coverage": "babel-node ./node_modules/babel-istanbul/lib/cli cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec --timeout 10000 test/*.js",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"

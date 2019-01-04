@@ -13,7 +13,6 @@ Build status of continuous integration i:e travis.
 [![Maintainability](https://api.codeclimate.com/v1/badges/b860b2923b24cbb6607b/maintainability)](https://codeclimate.com/github/Bluebird2000/questioner-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b860b2923b24cbb6607b/test_coverage)](https://codeclimate.com/github/Bluebird2000/questioner-api/test_coverage)
 
-
 #### Technologies
  * [ECMAScript 2015 - ES6](http://es6-features.org/): This is the newest version of JavsScript with new features such as arrow functions, spread and rest operators and many more.
  * [Babel:](https://babeljs.io/)  Babel is used to transpile es6+ js code down to es5.
