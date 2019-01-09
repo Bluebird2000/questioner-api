@@ -106,7 +106,7 @@ exports.updateMeetup = (req, res) => {
   meetup.topic = req.body.topic;
   meetup.happeningOn = req.body.happeningOn;
   meetup.tags = req.body.tags;
-  return res.status(200).send({ status: 200, meetup, });
+  return res.status(200).send({ status: 200, meetup });
 };
 
 exports.deleteMeetup = (req, res) => {

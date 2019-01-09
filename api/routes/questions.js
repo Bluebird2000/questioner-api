@@ -8,9 +8,9 @@ router.post('/questions', MeetupQuestionController.createQuestion);
 
 router.get('/questions/:id', MeetupQuestionController.meetupQuestion);
 
-router.put('/questions/upvote/:id', MeetupQuestionController.upvoteQuestion);
+router.put('/questions/:id/upvote', MeetupQuestionController.upvoteQuestion);
 
-router.put('/questions/downvote/:id', MeetupQuestionController.downvoteQuestion);
+router.put('/questions/:id/downvote', MeetupQuestionController.downvoteQuestion);
 
 
 module.exports = router;
