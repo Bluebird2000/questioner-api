@@ -1,4 +1,4 @@
-import meetupquestionValidation from '../models/meetupquestion';
+import meetupquestionValidation from '../models/question';
 
 const questions = [
   {
@@ -22,7 +22,7 @@ const questions = [
     downvotes: 0,
   },
 ];
-exports.create_meetup_question = (req, res) => {
+exports.createQuestion = (req, res) => {
   const { error } = meetupquestionValidation(req.body);
   if (error) {
     const err = error.details[0].message;
@@ -50,7 +50,7 @@ exports.create_meetup_question = (req, res) => {
     });
 };
 
-exports.get_meetup_question = (req, res) => {
+exports.meetupQuestion = (req, res) => {
   const question = questions.find(q => q.id === parseInt(req.params.id));
   if (!question) {
     res.status(404)
@@ -67,7 +67,7 @@ exports.get_meetup_question = (req, res) => {
     });
 };
 
-exports.meetupquestions_upvote = (req, res) => {
+exports.upvoteQuestion = (req, res) => {
   const question = questions.find(q => q.id === parseInt(req.params.id));
   if (!question) {
     res.status(404)
@@ -84,7 +84,7 @@ exports.meetupquestions_upvote = (req, res) => {
   }
 };
 
-exports.meetupquestions_downvote = (req, res) => {
+exports.downvoteQuestion = (req, res) => {
   const question = questions.find(q => q.id === parseInt(req.params.id));
   if (!question) {
     res.status(404)

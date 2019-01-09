@@ -26,7 +26,7 @@ const questionerUsers = [
     isAdmin: false,
   },
 ];
-exports.users_sign_up = (req, res) => {
+exports.userSignup = (req, res) => {
   const { error } = userValidation(req.body);
   if (error) {
     const err = error.details[0].message;
@@ -56,7 +56,7 @@ exports.users_sign_up = (req, res) => {
     });
 };
 
-exports.users_get_user = (req, res) => {
+exports.getUsers = (req, res) => {
   const user = questionerUsers.find(u => u.id === parseInt(req.params.id));
   if (!user) {
     res.status(404)
@@ -69,7 +69,7 @@ exports.users_get_user = (req, res) => {
   res.send({ status: 200, data: [user] }).status(200);
 };
 
-exports.users_update_user = (req, res) => {
+exports.updateUser = (req, res) => {
   const user = questionerUsers.find(u => u.id === parseInt(req.params.id));
   const { error } = userValidation(req.body);
   if (!user) {

@@ -4,16 +4,16 @@ import MeetupController from '../controllers/meetups';
 
 const router = express.Router();
 
-router.post('/meetups', MeetupController.create_meetup);
+router.post('/meetups', MeetupController.createMeetup);
 
-router.get('/meetups', MeetupController.get_all_meetups);
+router.get('/meetups', MeetupController.getMeetups);
 
-router.get('/meetups/:id', MeetupController.get_single_meetup);
+router.get('/meetups/:id', MeetupController.singleMeetup);
 
-router.get('/meetups/upcomings/meetup', MeetupController.get_upcoming_meetups);
+router.get('/meetups/upcomings/meetup', MeetupController.upcomingMeetups);
 
-router.put('/meetups/:id', MeetupController.update_single_meetup);
+router.put('/meetups/:id', MeetupController.updateMeetup);
 
-router.delete('/meetups/:id', MeetupController.delete_single_meetup);
+router.delete('/meetups/:id', MeetupController.deleteMeetup);
 
 module.exports = router;

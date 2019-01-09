@@ -26,7 +26,7 @@ const meetups = [
   },
 ];
 
-exports.create_rsvp_response = (req, res) => {
+exports.rsvpResponse = (req, res) => {
   const meetup = meetups.find(m => m.id === parseInt(req.params.id));
   if (!meetup) {
     res.status(404)

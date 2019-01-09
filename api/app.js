@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/users';
 import meetupRoutes from './routes/meetups';
-import meetupQuestionRoutes from './routes/meetupquestions';
+import questionRoutes from './routes/questions';
 import rsvpRoutes from './routes/rsvp';
 
 const app = express();
@@ -12,7 +12,7 @@ app.use('/api/v1', userRoutes);
 
 app.use('/api/v1', meetupRoutes);
 
-app.use('/api/v1', meetupQuestionRoutes);
+app.use('/api/v1', questionRoutes);
 
 app.use('/api/v1', rsvpRoutes);
 

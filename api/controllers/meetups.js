@@ -18,7 +18,7 @@ const meetups = [
     tags: ['laravel', 'Django', 'python'],
   },
 ];
-exports.create_meetup = (req, res) => {
+exports.createMeetup = (req, res) => {
   const { error } = meetupValidation(req.body);
   if (error) {
     const err = error.details[0].message;
@@ -42,7 +42,7 @@ exports.create_meetup = (req, res) => {
   return res.status(200).send({ status: 200, data: [data] });
 };
 
-exports.get_all_meetups = (req, res) => {
+exports.getMeetups = (req, res) => {
   res.status(200)
     .send({
       status: 200,
@@ -50,7 +50,7 @@ exports.get_all_meetups = (req, res) => {
     });
 };
 
-exports.get_single_meetup = (req, res) => {
+exports.singleMeetup = (req, res) => {
   const meetup = meetups.find(m => m.id === parseInt(req.params.id));
   if (!meetup) {
     res.status(404)
@@ -67,7 +67,7 @@ exports.get_single_meetup = (req, res) => {
     });
 };
 
-exports.get_upcoming_meetups = (req, res) => {
+exports.upcomingMeetups = (req, res) => {
   const now = new Date().getTime();
   const upComingMeetups = meetups.filter(
     meetup => new Date(meetup.happeningOn).getTime() >= now,
@@ -85,7 +85,7 @@ exports.get_upcoming_meetups = (req, res) => {
   }
 };
 
-exports.update_single_meetup = (req, res) => {
+exports.updateMeetup = (req, res) => {
   const meetup = meetups.find(m => m.id === parseInt(req.params.id));
   const { error } = meetupValidation(req.body);
   if (!meetup) return res.status(404).send({ status: 404, error: `Meetup with id: ${req.params.id} does not exist` });
@@ -109,7 +109,7 @@ exports.update_single_meetup = (req, res) => {
   return res.status(200).send({ status: 200, meetup: [meetup] });
 };
 
-exports.delete_single_meetup = (req, res) => {
+exports.deleteMeetup = (req, res) => {
   const meetup = meetups.find(m => m.id === parseInt(req.params.id));
   if (!meetup) {
     return res.status(404).send({ status: 404, error: `Meetup with the given ID: ${req.params.id} does not exist` });
