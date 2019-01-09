@@ -56,7 +56,7 @@ exports.meetupQuestion = (req, res) => {
     res.status(404)
       .send({
         status: 404,
-        error: `question with the requested id: ${req.params.id} does not exist`,
+        error: 'question with the requested id does not exist',
       });
     return;
   }
@@ -73,7 +73,7 @@ exports.upvoteQuestion = (req, res) => {
     res.status(404)
       .send({
         status: 404,
-        error: `question with the id ${req.params.id} does not exist`,
+        error: 'question with the id does not exist',
       });
   } else {
     question.upvotes = req.body.upvotes;
