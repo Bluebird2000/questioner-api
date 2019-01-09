@@ -52,11 +52,11 @@ exports.userSignup = (req, res) => {
   res.status(200)
     .send({
       status: 200,
-      data: [data],
+      data,
     });
 };
 
-exports.getUsers = (req, res) => {
+exports.getUser = (req, res) => {
   const user = questionerUsers.find(u => u.id === parseInt(req.params.id));
   if (!user) {
     res.status(404)
@@ -66,7 +66,7 @@ exports.getUsers = (req, res) => {
       });
     return;
   }
-  res.send({ status: 200, data: [user] }).status(200);
+  res.send({ status: 200, data: user }).status(200);
 };
 
 exports.updateUser = (req, res) => {
@@ -97,6 +97,6 @@ exports.updateUser = (req, res) => {
   return res.status(200)
     .send({
       status: 200,
-      data: [user],
+      data: user,
     });
 };

@@ -46,6 +46,6 @@ exports.rsvpResponse = (req, res) => {
   rsvps.push(rsvp);
   res.status(200).send({
     status: 200,
-    data: [rsvp],
+    rsvp,
   });
 };

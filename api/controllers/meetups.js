@@ -39,14 +39,14 @@ exports.createMeetup = (req, res) => {
     return res.status(422).send({ status: 422, error: 'please provide a future meetup date not a past date' });
   }
   meetups.push(data);
-  return res.status(200).send({ status: 200, data: [data] });
+  return res.status(200).send({ status: 200, data });
 };
 
 exports.getMeetups = (req, res) => {
   res.status(200)
     .send({
       status: 200,
-      meetups,
+      data: [meetups],
     });
 };
 
@@ -63,7 +63,7 @@ exports.singleMeetup = (req, res) => {
   res.status(200)
     .send({
       status: 200,
-      meetup: [meetup],
+      meetup,
     });
 };
 
@@ -80,7 +80,7 @@ exports.upcomingMeetups = (req, res) => {
   } else {
     res.status(200).send({
       status: 200,
-      data: upComingMeetups,
+      data: [upComingMeetups],
     });
   }
 };
@@ -106,7 +106,7 @@ exports.updateMeetup = (req, res) => {
   meetup.topic = req.body.topic;
   meetup.happeningOn = req.body.happeningOn;
   meetup.tags = req.body.tags;
-  return res.status(200).send({ status: 200, meetup: [meetup] });
+  return res.status(200).send({ status: 200, meetup, });
 };
 
 exports.deleteMeetup = (req, res) => {
@@ -117,6 +117,6 @@ exports.deleteMeetup = (req, res) => {
   return res.status(200)
     .send({
       status: 200,
-      meetup: [meetup],
+      meetup,
     });
 };

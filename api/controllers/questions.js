@@ -46,7 +46,7 @@ exports.createQuestion = (req, res) => {
   res.status(200)
     .send({
       status: 200,
-      data: [data],
+      data,
     });
 };
 
@@ -63,7 +63,7 @@ exports.meetupQuestion = (req, res) => {
   res.status(200)
     .send({
       status: 200,
-      question: [question],
+      question,
     });
 };
 
@@ -79,7 +79,7 @@ exports.upvoteQuestion = (req, res) => {
     question.upvotes = req.body.upvotes;
     res.status(200).send({
       status: 200,
-      question: [question],
+      question,
     });
   }
 };
@@ -97,6 +97,6 @@ exports.downvoteQuestion = (req, res) => {
   question.downvotes = req.body.downvotes;
   res.status(200).send({
     status: 200,
-    question: [question],
+    question,
   });
 };
