@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crowd-source questions for a meetup :: Questioner</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Crowd-source questions for a meetup. ​Questioner​​ helps the meetup organizer prioritize  questions to be answered. Other users can vote on asked questions and they bubble to the top  or bottom of the log" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="../css/admin.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://fonts.googleapis.com/css?family=Cookie|Fredoka+One|Montserrat" rel="stylesheet">
+</head>
+<body>
+	<div id="main-wrapper">
+	<div id="sidebar">
+			<div class="logo"><i class="fa fa-meetup" aria-hidden="true"></i>Questioner</div>
+		<ul>
+			<li><a href="#"> <i class="fa fa-plus" aria-hidden="true"></i> Create meetup</a></li>
+			<li><a href="#"> <i class="fa fa-meetup" aria-hidden="true"></i> Meetups</a></li>
+			<li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> Feedback</a></li>
+		</ul>
+		<div id="sidebar-btn">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+		<div id="container">
+			<div class="rightbar-btn">
+				<a href="login.html">Log Out</a>
+			</div>
+			<div class="meetup-container-section">
+				<img src="../img/post.png">
+				<h3>React summit</h3>
+				<p>The meeting of two personalities is like the contact of two chemical substances: If there is any reaction, both are transformed.</p>
+			</div>
+			<div class="meetup-container-section">
+				<img src="../img/post.png">
+				<h3>Developer fest</h3>
+				<p>Meet the people attending this event around the globe. This will be the best opportunity to meet and share wonderful experience.</p>
+			</div>
+			<div class="meetup-container-section">
+				<img src="../img/post.png">
+				<h3>Developer cycle</h3>
+				<p>Meet the people attending this event around the globe. This will be the best opportunity to meet and share wonderful experience.</p>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<p class="footer-bottom-flat">&copy;<script>document.write(new Date().getFullYear());</script> <a href="#">Crowd-source questions for a meetup </a></p>
+	</div>
+	<script type="text/javascript">
+		var toggleBtn = document.querySelector('#sidebar-btn');
+		var sidebarToggle = document.querySelector('#sidebar');
+		toggleBtn.addEventListener('click', () => {
+			sidebarToggle.classList.toggle('visible');
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Maximum of 80 lines of code.
+Module.exports is es6, Think of how its done es6
+Commented out code is not allowed
+Using the right joi validator for input type
+UUID validation on id
