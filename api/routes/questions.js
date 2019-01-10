@@ -13,4 +13,4 @@ router.put('/questions/:id/upvote', MeetupQuestionController.upvoteQuestion);
 router.put('/questions/:id/downvote', MeetupQuestionController.downvoteQuestion);
 
 
-module.exports = router;
+export default router;

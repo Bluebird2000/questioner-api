@@ -16,4 +16,4 @@ router.put('/meetups/:id', MeetupController.updateMeetup);
 
 router.delete('/meetups/:id', MeetupController.deleteMeetup);
 
-module.exports = router;
+export default router;

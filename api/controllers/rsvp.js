@@ -25,27 +25,28 @@ const meetups = [
     tags: ['laravel', 'Django', 'python'],
   },
 ];
-
-exports.rsvpResponse = (req, res) => {
-  const meetup = meetups.find(m => m.id === parseInt(req.params.id));
-  if (!meetup) {
-    res.status(404)
-      .send({
-        status: 404,
-        error: `Meetup with the given ID: ${req.params.id} does not exist`,
-      });
-    return;
-  }
-  const rsvp = {
-    id: rsvps.length + 1,
-    meetup: req.body.meetup,
-    user: req.body.user,
-    topic: req.body.topic,
-    response: req.body.response,
-  };
-  rsvps.push(rsvp);
-  res.status(200).send({
-    status: 200,
-    rsvp,
-  });
+export default {
+  rsvpResponse(req, res) {
+    const data = meetups.find(meetup => meetup.id === parseInt(req.params.id));
+    if (!data) {
+      res.status(404)
+        .send({
+          status: 404,
+          error: `Meetup with the given ID: ${req.params.id} does not exist`,
+        });
+      return;
+    }
+    const rsvp = {
+      id: rsvps.length + 1,
+      meetup: req.body.meetup,
+      user: req.body.user,
+      topic: req.body.topic,
+      response: req.body.response,
+    };
+    rsvps.push(rsvp);
+    res.status(200).send({
+      status: 200,
+      rsvp,
+    });
+  },
 };

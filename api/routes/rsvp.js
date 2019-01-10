@@ -6,4 +6,4 @@ const router = express.Router();
 
 router.post('/meetups/:id/rsvps', RsvpController.rsvpResponse);
 
-module.exports = router;
+export default router;

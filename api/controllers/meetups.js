@@ -18,139 +18,151 @@ const meetups = [
     tags: ['laravel', 'Django', 'python'],
   },
 ];
-exports.createMeetup = (req, res) => {
-  const { error } = meetupValidation(req.body);
-  if (error) {
-    const err = error.details[0].message;
-    return res.status(400)
-      .send({
-        status: 400,
-        error: err,
-      });
-  }
-  const data = {
-    id: meetups.length + 1,
-    createdOn: req.body.createdOn,
-    location: req.body.location,
-    topic: req.body.topic,
-    happeningOn: req.body.happeningOn,
-    tags: req.body.tags,
-  };
-  if (Number.isNaN(new Date(req.body.happeningOn).getTime())) {
-    return res.status(422)
-      .send({
-        status: 422,
-        error: 'please provide a valid meetup date',
-      });
-  }
-  if (new Date(req.body.happeningOn).getTime() < new Date().getTime()) {
-    return res.status(422)
-      .send({
-        status: 422,
-        error: 'please provide a future meetup date not a past date',
-      });
-  }
-  meetups.push(data);
-  return res.status(200).send({ status: 200, data });
-};
 
-exports.getMeetups = (req, res) => {
-  res.status(200)
-    .send({
-      status: 200,
-      data: [meetups],
-    });
-};
+export default {
+  createMeetup(req, res) {
+    const { error } = meetupValidation(req.body);
+    if (error) {
+      const err = error.details[0].message;
+      return res.status(400)
+        .send({
+          status: 400,
+          error: err,
+        });
+    }
+    const data = {
+      id: meetups.length + 1,
+      createdOn: req.body.createdOn,
+      location: req.body.location,
+      topic: req.body.topic,
+      happeningOn: req.body.happeningOn,
+      tags: req.body.tags,
+    };
+    if (Number.isNaN(new Date(req.body.happeningOn).getTime())) {
+      return res.status(422)
+        .send({
+          status: 422,
+          error: 'please provide a valid meetup date',
+        });
+    }
+    if (new Date(req.body.happeningOn).getTime() < new Date().getTime()) {
+      return res.status(422)
+        .send({
+          status: 422,
+          error: 'please provide a future meetup date not a past date',
+        });
+    }
+    meetups.push(data);
+    return res.status(200).send({ status: 200, data });
+  },
 
-exports.singleMeetup = (req, res) => {
-  const meetup = meetups.find(m => m.id === parseInt(req.params.id));
-  if (!meetup) {
-    res.status(404)
+  getMeetups(req, res) {
+    res.status(200)
       .send({
+        status: 200,
+        data: [meetups],
+      });
+  },
+
+  singleMeetup(req, res) {
+    const data = meetups.find(
+      meetup => meetup.id === parseInt(req.params.id),
+    );
+    if (!data) {
+      res.status(404)
+        .send({
+          status: 404,
+          error: `Meetup with the given ID: ${req.params.id} does not exist`,
+        });
+      return;
+    }
+    res.status(200)
+      .send({
+        status: 200,
+        data,
+      });
+  },
+
+  upcomingMeetups(req, res) {
+    const now = new Date().getTime();
+    const upComingMeetups = meetups.filter(
+      meetup => new Date(meetup.happeningOn).getTime() >= now,
+    );
+    if (!upComingMeetups.length) {
+      res.status(404).send({
         status: 404,
-        error: `Meetup with the given ID: ${req.params.id} does not exist`,
+        error: 'There are no upcoming meetups',
       });
-    return;
-  }
-  res.status(200)
-    .send({
-      status: 200,
-      meetup,
-    });
-};
+    } else {
+      res.status(200).send({
+        status: 200,
+        data: [upComingMeetups],
+      });
+    }
+  },
 
-exports.upcomingMeetups = (req, res) => {
-  const now = new Date().getTime();
-  const upComingMeetups = meetups.filter(
-    meetup => new Date(meetup.happeningOn).getTime() >= now,
-  );
-  if (!upComingMeetups.length) {
-    res.status(404).send({
-      status: 404,
-      error: 'There are no upcoming meetups',
-    });
-  } else {
-    res.status(200).send({
-      status: 200,
-      data: [upComingMeetups],
-    });
-  }
-};
+  updateMeetup(req, res) {
+    const data = meetups.find(
+      meetup => meetup.id === parseInt(req.params.id),
+    );
+    const { error } = meetupValidation(req.body);
+    if (!data) {
+      return res.status(404)
+        .send({
+          status: 404,
+          error: `Meetup with id: ${req.params.id} does not exist`,
+        });
+    }
+    if (error) {
+      const e = error.details[0].message;
+      return res.status(400)
+        .send({
+          status: 400,
+          error: e,
+        });
+    }
 
-exports.updateMeetup = (req, res) => {
-  const meetup = meetups.find(m => m.id === parseInt(req.params.id));
-  const { error } = meetupValidation(req.body);
-  if (!meetup) {
-    return res.status(404)
-      .send({
-        status: 404,
-        error: `Meetup with id: ${req.params.id} does not exist`,
-      });
-  }
-  if (error) {
-    const e = error.details[0].message;
-    return res.status(400)
-      .send({
-        status: 400,
-        error: e,
-      });
-  }
+    if (Number.isNaN(new Date(req.body.happeningOn).getTime())) {
+      return res.status(422)
+        .send({
+          status: 422,
+          error: 'please provide a valid meetup date',
+        });
+    }
 
-  if (Number.isNaN(new Date(req.body.happeningOn).getTime())) {
-    return res.status(422)
+    if (new Date(req.body.happeningOn).getTime() < new Date().getTime()) {
+      return res.status(422)
+        .send({
+          status: 422,
+          error: 'please provide a future meetup date not a past date',
+        });
+    }
+    data.createdOn = req.body.createdOn;
+    data.location = req.body.location;
+    data.topic = req.body.topic;
+    data.happeningOn = req.body.happeningOn;
+    data.tags = req.body.tags;
+    return res.status(200)
       .send({
-        status: 422,
-        error: 'please provide a valid meetup date',
+        status: 200,
+        data,
       });
-  }
-
-  if (new Date(req.body.happeningOn).getTime() < new Date().getTime()) {
-    return res.status(422)
+  },
+  deleteMeetup(req, res) {
+    const data = meetups.find(
+      meetup => meetup.id === parseInt(req.params.id),
+    );
+    if (!data) {
+      return res.status(404)
+        .send({
+          status: 404,
+          error: `Meetup with the given ID: ${req.params.id} does not exist`,
+        });
+    }
+    return res.status(200)
       .send({
-        status: 422,
-        error: 'please provide a future meetup date not a past date',
+        status: 200,
+        data,
       });
-  }
-  meetup.createdOn = req.body.createdOn;
-  meetup.location = req.body.location;
-  meetup.topic = req.body.topic;
-  meetup.happeningOn = req.body.happeningOn;
-  meetup.tags = req.body.tags;
-  return res.status(200).send({ status: 200, meetup });
-};
-
-exports.deleteMeetup = (req, res) => {
-  const meetup = meetups.find(m => m.id === parseInt(req.params.id));
-  if (!meetup) {
-    return res.status(404)
-      .send({
-        status: 404,
-        error: `Meetup with the given ID: ${req.params.id} does not exist`,
-      });
-  }
-  return res.status(200)
-    .send({
-      status: 200,
-      meetup,
-    });
+  },
 };

@@ -16,4 +16,4 @@ app.use('/api/v1', questionRoutes);
 
 app.use('/api/v1', rsvpRoutes);
 
-module.exports = app;
+export default app;

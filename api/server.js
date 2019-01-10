@@ -7,4 +7,4 @@ if (!module.parent) {
     console.log(`Application now listening on port ${process.env.PORT}`);
   });
 }
-module.exports = { app };
+export default app;

@@ -26,77 +26,86 @@ const questionerUsers = [
     isAdmin: false,
   },
 ];
-exports.userSignup = (req, res) => {
-  const { error } = userValidation(req.body);
-  if (error) {
-    const err = error.details[0].message;
-    res.status(400)
+export default {
+  userSignup(req, res) {
+    const { error } = userValidation(req.body);
+    if (error) {
+      const err = error.details[0].message;
+      res.status(400)
+        .send({
+          status: 400, error: err,
+        });
+      return;
+    }
+    const data = {
+      id: questionerUsers.length + 1,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      othername: req.body.othername,
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
+      username: req.body.username,
+      password: req.body.password,
+      registered: new Date(),
+      isAdmin: req.body.isAdmin,
+    };
+    questionerUsers.push(data);
+    res.status(200)
       .send({
-        status: 400, error: err,
+        status: 200,
+        data,
       });
-    return;
-  }
-  const data = {
-    id: questionerUsers.length + 1,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    othername: req.body.othername,
-    email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
-    username: req.body.username,
-    password: req.body.password,
-    registered: new Date(),
-    isAdmin: req.body.isAdmin,
-  };
-  questionerUsers.push(data);
-  res.status(200)
-    .send({
-      status: 200,
-      data,
-    });
-};
+  },
+  getUser(req, res) {
+    const data = questionerUsers.find(
+      questionerUser => questionerUser.id === parseInt(req.params.id),
+    );
+    if (!data) {
+      res.status(404)
+        .send({
+          status: 404,
+          error: `User with the given ID: ${req.params.id} does not exist`,
+        });
+      return;
+    }
+    res.status(200)
+      .send({
+        status: 200,
+        data,
+      });
+  },
 
-exports.getUser = (req, res) => {
-  const user = questionerUsers.find(u => u.id === parseInt(req.params.id));
-  if (!user) {
-    res.status(404)
+  updateUser(req, res) {
+    const data = questionerUsers.find(
+      questionerUser => questionerUser.id === parseInt(req.params.id),
+    );
+    const { error } = userValidation(req.body);
+    if (!data) {
+      return res.status(404)
+        .send({
+          status: 404,
+          error: `User with the given ID: ${req.params.id} does not exist`,
+        });
+    }
+    if (error) {
+      const err = error.details[0].message;
+      return res.status(400)
+        .send({
+          status: 400,
+          error: err,
+        });
+    }
+    data.firstname = req.body.firstname;
+    data.lastname = req.body.lastname;
+    data.othername = req.body.othername;
+    data.email = req.body.email;
+    data.phoneNumber = req.body.phoneNumber;
+    data.username = req.body.username;
+    data.password = req.body.password;
+    return res.status(200)
       .send({
-        status: 404,
-        error: `User with the given ID: ${req.params.id} does not exist`,
+        status: 200,
+        data,
       });
-    return;
-  }
-  res.send({ status: 200, data: user }).status(200);
-};
-
-exports.updateUser = (req, res) => {
-  const user = questionerUsers.find(u => u.id === parseInt(req.params.id));
-  const { error } = userValidation(req.body);
-  if (!user) {
-    return res.status(404)
-      .send({
-        status: 404,
-        error: `User with the given ID: ${req.params.id} does not exist`,
-      });
-  }
-  if (error) {
-    const err = error.details[0].message;
-    return res.status(400)
-      .send({
-        status: 400,
-        error: err,
-      });
-  }
-  user.firstname = req.body.firstname;
-  user.lastname = req.body.lastname;
-  user.othername = req.body.othername;
-  user.email = req.body.email;
-  user.phoneNumber = req.body.phoneNumber;
-  user.username = req.body.username;
-  user.password = req.body.password;
-  return res.status(200)
-    .send({
-      status: 200,
-      data: user,
-    });
+  },
 };
