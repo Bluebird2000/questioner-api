@@ -50,9 +50,9 @@ export default {
       isAdmin: req.body.isAdmin,
     };
     questionerUsers.push(data);
-    res.status(200)
+    res.status(201)
       .send({
-        status: 200,
+        status: 201,
         data,
       });
   },

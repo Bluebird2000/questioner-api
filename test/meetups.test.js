@@ -8,7 +8,7 @@ chai.should();
 
 chai.use(chaiHttp);
 describe('POST / Meetups', () => {
-  it('should return status code 200 and create a new meetup record', (done) => {
+  it('should return status code 201 and create a new meetup record', (done) => {
     chai.request(app)
       .post('/api/v1/meetups')
       .send({
@@ -19,7 +19,7 @@ describe('POST / Meetups', () => {
         tags: ['nodejs', 'react', 'mongo', 'express'],
       })
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         done();
       });
   });

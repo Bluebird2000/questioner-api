@@ -44,8 +44,8 @@ export default {
       response: req.body.response,
     };
     rsvps.push(rsvp);
-    res.status(200).send({
-      status: 200,
+    res.status(201).send({
+      status: 201,
       rsvp,
     });
   },

@@ -53,7 +53,7 @@ export default {
         });
     }
     meetups.push(data);
-    return res.status(200).send({ status: 200, data });
+    return res.status(201).send({ status: 201, data });
   },
 
   getMeetups(req, res) {

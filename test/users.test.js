@@ -9,7 +9,7 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('POST / Users', () => {
-  it('should return status code 200 and create a new user account', (done) => {
+  it('should return status code 201 and create a new user account', (done) => {
     const newUser = {
       firstname: 'Ahmad',
       lastname: 'Lateef',
@@ -23,7 +23,7 @@ describe('POST / Users', () => {
       .post('/api/v1/users')
       .send(newUser)
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         done();
       });
   });

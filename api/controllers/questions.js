@@ -44,9 +44,9 @@ export default {
       downvotes: req.body.downvotes,
     };
     questions.push(data);
-    res.status(200)
+    res.status(201)
       .send({
-        status: 200,
+        status: 201,
         data,
       });
   },
