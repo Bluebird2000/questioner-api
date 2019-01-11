@@ -3,7 +3,7 @@ import meetupValidation from '../models/meetup';
 const meetups = [
   {
     id: 1,
-    createdOn: new Date().getFullYear(),
+    createdOn: new Date(),
     location: 'Ajah',
     topic: 'React summit',
     happeningOn: '2019-01-03',
@@ -11,7 +11,7 @@ const meetups = [
   },
   {
     id: 2,
-    createdOn: new Date().getFullYear(),
+    createdOn: new Date(),
     location: 'Ojodu berger',
     topic: 'Developer fest',
     happeningOn: '2019-04-03',
@@ -32,7 +32,7 @@ export default {
     }
     const data = {
       id: meetups.length + 1,
-      createdOn: req.body.createdOn,
+      createdOn: new Date(),
       location: req.body.location,
       topic: req.body.topic,
       happeningOn: req.body.happeningOn,
@@ -137,7 +137,7 @@ export default {
           error: 'please provide a future meetup date not a past date',
         });
     }
-    data.createdOn = req.body.createdOn;
+    data.createdOn = new Date();
     data.location = req.body.location;
     data.topic = req.body.topic;
     data.happeningOn = req.body.happeningOn;

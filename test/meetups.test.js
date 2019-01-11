@@ -12,7 +12,6 @@ describe('POST / Meetups', () => {
     chai.request(app)
       .post('/api/v1/meetups')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '1 December 2019',
@@ -27,7 +26,6 @@ describe('POST / Meetups', () => {
     chai.request(app)
       .post('/api/v1/meetups')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '323 January 2019',
@@ -42,7 +40,6 @@ describe('POST / Meetups', () => {
     chai.request(app)
       .post('/api/v1/meetups')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '23 January 2018',
@@ -142,7 +139,6 @@ describe('PUT / update a single meetup record', () => {
     chai.request(app)
       .put('/api/v1/meetups/1')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '1 febuary 2019',
@@ -157,7 +153,6 @@ describe('PUT / update a single meetup record', () => {
     chai.request(app)
       .put('/api/v1/meetups/1')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '323 January 2019',
@@ -172,7 +167,6 @@ describe('PUT / update a single meetup record', () => {
     chai.request(app)
       .put('/api/v1/meetups/1')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '23 January 2018',
@@ -199,7 +193,6 @@ describe('DELETE / update a single meetup record', () => {
     chai.request(app)
       .delete('/api/v1/meetups/1')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: 'March 7th 2019',
