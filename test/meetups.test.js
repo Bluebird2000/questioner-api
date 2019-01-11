@@ -106,7 +106,7 @@ describe('GET / single meetup', () => {
 describe('GET / All upcoming meetup records', () => {
   it('it should return status code 200 and get list of upcoming meetups', (done) => {
     chai.request(app)
-      .get('/api/v1/meetups/upcomings/meetup')
+      .get('/api/v1/meetups/upcomings')
       .end((err, res) => {
         res.should.have.status(200);
         done();

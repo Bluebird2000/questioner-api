@@ -8,9 +8,9 @@ router.post('/meetups', MeetupController.createMeetup);
 
 router.get('/meetups', MeetupController.getMeetups);
 
-router.get('/meetups/:id', MeetupController.singleMeetup);
+router.get('/meetups/upcomings', MeetupController.upcomingMeetups);
 
-router.get('/meetups/upcomings/meetup', MeetupController.upcomingMeetups);
+router.get('/meetups/:id', MeetupController.singleMeetup);
 
 router.put('/meetups/:id', MeetupController.updateMeetup);
 
