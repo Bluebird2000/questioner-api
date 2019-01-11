@@ -2,13 +2,13 @@ import chai from 'chai';
 
 import chaiHttp from 'chai-http';
 
-import { app } from '../api/server';
+import app from '../api/server';
 
 chai.should();
 
 chai.use(chaiHttp);
 describe('POST / Meetup question', () => {
-  it('should return status code 200 and create a new meetup question', (done) => {
+  it('should return status code 201 and create a new meetup question', (done) => {
     chai.request(app)
       .post('/api/v1/questions')
       .send({
@@ -21,7 +21,7 @@ describe('POST / Meetup question', () => {
         downvotes: 0,
       })
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         done();
       });
   });
@@ -68,7 +68,7 @@ describe('PUT / upvote meetup questions', () => {
 
   it('should return status code 200 if meetup question exist', (done) => {
     chai.request(app)
-      .put('/api/v1/questions/upvote/1')
+      .put('/api/v1/questions/1/upvote')
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -79,7 +79,7 @@ describe('PUT / upvote meetup questions', () => {
 describe('PUT / downvotes meetup questions', () => {
   it('should return status code 404 if meetup question to be downvoted does not exist', (done) => {
     chai.request(app)
-      .put('/api/v1/questions/downvote/10')
+      .put('/api/v1/questions/10/downvote')
       .end((err, res) => {
         res.should.have.status(404);
         done();
@@ -88,7 +88,7 @@ describe('PUT / downvotes meetup questions', () => {
 
   it('should return status code 200 if meetup question exist', (done) => {
     chai.request(app)
-      .put('/api/v1/questions/downvote/1')
+      .put('/api/v1/questions/1/downvote')
       .end((err, res) => {
         res.should.have.status(200);
         done();

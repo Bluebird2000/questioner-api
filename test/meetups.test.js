@@ -2,24 +2,23 @@ import chai from 'chai';
 
 import chaiHttp from 'chai-http';
 
-import { app } from '../api/server';
+import app from '../api/server';
 
 chai.should();
 
 chai.use(chaiHttp);
 describe('POST / Meetups', () => {
-  it('should return status code 200 and create a new meetup record', (done) => {
+  it('should return status code 201 and create a new meetup record', (done) => {
     chai.request(app)
       .post('/api/v1/meetups')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '1 December 2019',
         tags: ['nodejs', 'react', 'mongo', 'express'],
       })
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         done();
       });
   });
@@ -27,7 +26,6 @@ describe('POST / Meetups', () => {
     chai.request(app)
       .post('/api/v1/meetups')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '323 January 2019',
@@ -42,7 +40,6 @@ describe('POST / Meetups', () => {
     chai.request(app)
       .post('/api/v1/meetups')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '23 January 2018',
@@ -109,7 +106,7 @@ describe('GET / single meetup', () => {
 describe('GET / All upcoming meetup records', () => {
   it('it should return status code 200 and get list of upcoming meetups', (done) => {
     chai.request(app)
-      .get('/api/v1/meetups/upcomings/meetup')
+      .get('/api/v1/meetups/upcomings')
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -142,7 +139,6 @@ describe('PUT / update a single meetup record', () => {
     chai.request(app)
       .put('/api/v1/meetups/1')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '1 febuary 2019',
@@ -157,7 +153,6 @@ describe('PUT / update a single meetup record', () => {
     chai.request(app)
       .put('/api/v1/meetups/1')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '323 January 2019',
@@ -172,7 +167,6 @@ describe('PUT / update a single meetup record', () => {
     chai.request(app)
       .put('/api/v1/meetups/1')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: '23 January 2018',
@@ -199,14 +193,13 @@ describe('DELETE / update a single meetup record', () => {
     chai.request(app)
       .delete('/api/v1/meetups/1')
       .send({
-        createdOn: new Date().getFullYear(),
         location: 'Ajah',
         topic: 'React summit',
         happeningOn: 'March 7th 2019',
         tags: ['nodejs', 'react', 'mongo', 'express'],
       })
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(204);
         done();
       });
   });

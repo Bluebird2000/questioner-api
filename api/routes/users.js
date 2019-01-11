@@ -4,11 +4,11 @@ import UserController from '../controllers/users';
 
 const router = express.Router();
 
-router.post('/users', UserController.users_sign_up);
+router.post('/users', UserController.userSignup);
 
-router.get('/users/:id', UserController.users_get_user);
+router.get('/users/:id', UserController.getUser);
 
-router.put('/users/:id', UserController.users_update_user);
+router.put('/users/:id', UserController.updateUser);
 
 
-module.exports = router;
+export default router;

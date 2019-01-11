@@ -2,10 +2,9 @@ import chai from 'chai';
 
 import chaiHttp from 'chai-http';
 
-import { app } from '../api/server';
+import app from '../api/server';
 
 chai.should();
-
 chai.use(chaiHttp);
 describe('POST / Rsvps', () => {
   it('should return status code 200 if meetup exist and create meetup rsvp', (done) => {
@@ -19,7 +18,7 @@ describe('POST / Rsvps', () => {
         tags: ['laravel', 'Django', 'python'],
       })
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         done();
       });
   });

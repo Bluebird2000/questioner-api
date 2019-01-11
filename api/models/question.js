@@ -3,7 +3,7 @@ import Joi from 'joi';
 const meetupquestionValidation = (createMeetupQ) => {
   const meetupquestSchema = {
     meetupId: Joi.required(),
-    createdOn: Joi.required(),
+    createdOn: Joi.date().iso(),
     createdBy: Joi.required(),
     title: Joi.string().required(),
     body: Joi.string().required(),
