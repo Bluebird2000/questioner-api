@@ -206,7 +206,7 @@ describe('DELETE / update a single meetup record', () => {
         tags: ['nodejs', 'react', 'mongo', 'express'],
       })
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(204);
         done();
       });
   });

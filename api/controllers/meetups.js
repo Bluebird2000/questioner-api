@@ -60,7 +60,7 @@ export default {
     res.status(200)
       .send({
         status: 200,
-        data: [meetups],
+        data: meetups,
       });
   },
 
@@ -96,7 +96,7 @@ export default {
     } else {
       res.status(200).send({
         status: 200,
-        data: [upComingMeetups],
+        data: upComingMeetups,
       });
     }
   },
@@ -159,10 +159,11 @@ export default {
           error: `Meetup with the given ID: ${req.params.id} does not exist`,
         });
     }
-    return res.status(200)
+    const del = meetups.indexOf(data);
+    meetups.splice(del, 1);
+    return res.status(204)
       .send({
-        status: 200,
-        data,
+        meetups,
       });
   },
 };
