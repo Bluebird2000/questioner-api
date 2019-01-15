@@ -7,6 +7,7 @@
     "build": "babel api -d dist",
     "start": "npm run build && node ./dist/server",
     "lintfix": "eslint . --fix",
+    "migrate": "babel-node api/dbconfig/database",
     "dev": "nodemon --exec babel-node api/server.js",
     "pretest": "eslint .",
     "test": "babel-node node_modules/mocha/bin/_mocha test/*.js",
@@ -37,7 +38,10 @@
     "dotenv": "^6.0.0",
     "eslint-config-airbnb": "^17.1.0",
     "express": "^4.16.4",
-    "joi": "^13.4.0"
+    "joi": "^13.4.0",
+    "jsonwebtoken": "^8.4.0",
+    "bcryptjs": "^2.4.3",
+    "pg": "^7.7.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
