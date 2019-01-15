@@ -65,18 +65,23 @@ class AuthController extends ClientController {
             .then((val) => {
               if (val) {
                 const token = jwt.sign(
-                  { id: data.id },
+                  {
+                    id: data.id,
+                    email: data.email,
+                    firstname: data.firstname,
+                    lastname: data.lastname,
+                  },
                   process.env.JWT_KEY,
-                  { expiresIn: process.env.JWT_EXPIRY },
+                  {
+                    expiresIn: process.env.JWT_EXPIRY,
+                  },
                 );
                 delete data.password;
+                data.token = token;
                 res.status(200)
                   .json({
                     status: 'success',
-                    data: [{
-                      token,
-                      user: result.rows[0],
-                    }],
+                    data,
                   });
               } else {
                 res.status(401)
@@ -89,9 +94,17 @@ class AuthController extends ClientController {
             .catch((err) => {
               next(err);
             });
+        } else {
+          const error = new Error('Credentials do not match');
+          error.status = 401;
+          next(error);
         }
+      })
+      .catch((e) => {
+        next(e);
       });
   }
 }
+
 
 export default AuthController;
