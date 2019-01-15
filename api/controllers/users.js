@@ -1,111 +1,56 @@
+/* eslint no-underscore-dangle: 0 */
+import dotenv from 'dotenv';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import ClientController from './clientController';
 import userValidation from '../models/user';
 
-const questionerUsers = [
-  {
-    id: 1,
-    firstname: 'Ahmad',
-    lastname: 'Lateef',
-    othername: 'Olamilekan',
-    email: 'lateefahmad3868@gmail.com',
-    phoneNumber: '08097012219',
-    username: 'Bluebird2000',
-    password: 'default111',
-    registered: new Date(),
-    isAdmin: true,
-  },
-  {
-    id: 2,
-    firstname: 'Victoria',
-    lastname: 'Olakanmi',
-    othername: 'olushola',
-    email: 'Olakanmi123@gmail.com',
-    phoneNumber: '08029803788',
-    username: 'sholi',
-    registered: new Date(),
-    password: 'default111',
-    isAdmin: false,
-  },
-];
-export default {
-  userSignup(req, res) {
+dotenv.config();
+
+class UserController extends ClientController {
+  userSignup(req, res, next) {
     const { error } = userValidation(req.body);
     if (error) {
       const err = error.details[0].message;
       res.status(400)
-        .send({
+        .json({
           status: 400, error: err,
         });
-      return;
     }
-    const data = {
-      id: questionerUsers.length + 1,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      othername: req.body.othername,
-      email: req.body.email,
-      phoneNumber: req.body.phoneNumber,
-      username: req.body.username,
-      password: req.body.password,
-      registered: new Date(),
-      isAdmin: req.body.isAdmin,
+    const {
+      firstname, lastname, othername, email, phoneNumber, username, password, isAdmin,
+    } = req.body;
+    const hash = bcrypt.hashSync(password, 10);
+    const action = 'INSERT INTO users (firstname, lastname, othername, email, phoneNumber, username, password, isAdmin, created_at, updated_at) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *';
+    const values = [firstname, lastname, othername, email, phoneNumber, username, hash, isAdmin, 'NOW()', 'NOW()'];
+    const query = {
+      text: action,
+      values,
     };
-    questionerUsers.push(data);
-    res.status(201)
-      .send({
-        status: 201,
-        data,
+    const token = jwt.sign(query, process.env.JWT_KEY);
+    this._client.query(query)
+      .then((result) => {
+        res.status(201)
+          .json({
+            status: 201,
+            message: 'success',
+            data: [{
+              token,
+              user: result.rows[0],
+            }],
+          });
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(409)
+            .json({
+              status: 409,
+              message: 'User with that email already exist',
+            });
+        }
+        next();
       });
-  },
-  getUser(req, res) {
-    const data = questionerUsers.find(
-      questionerUser => questionerUser.id === parseInt(req.params.id),
-    );
-    if (!data) {
-      res.status(404)
-        .send({
-          status: 404,
-          error: `User with the given ID: ${req.params.id} does not exist`,
-        });
-      return;
-    }
-    res.status(200)
-      .send({
-        status: 200,
-        data,
-      });
-  },
+  }
+}
 
-  updateUser(req, res) {
-    const data = questionerUsers.find(
-      questionerUser => questionerUser.id === parseInt(req.params.id),
-    );
-    const { error } = userValidation(req.body);
-    if (!data) {
-      return res.status(404)
-        .send({
-          status: 404,
-          error: `User with the given ID: ${req.params.id} does not exist`,
-        });
-    }
-    if (error) {
-      const err = error.details[0].message;
-      return res.status(400)
-        .send({
-          status: 400,
-          error: err,
-        });
-    }
-    data.firstname = req.body.firstname;
-    data.lastname = req.body.lastname;
-    data.othername = req.body.othername;
-    data.email = req.body.email;
-    data.phoneNumber = req.body.phoneNumber;
-    data.username = req.body.username;
-    data.password = req.body.password;
-    return res.status(200)
-      .send({
-        status: 200,
-        data,
-      });
-  },
-};
+export default UserController;
