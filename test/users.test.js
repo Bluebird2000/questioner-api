@@ -13,7 +13,7 @@ describe('POST / Users', () => {
       firstname: 'Ahmad',
       lastname: 'Lateef',
       othername: 'Olamilekan',
-      email: 'Bluebird@gmail.com',
+      email: 'Bluebird20@gmail.com',
       phoneNumber: '08097012219',
       username: 'Bluebird2000',
       password: 'default111',
@@ -27,6 +27,4 @@ describe('POST / Users', () => {
       });
   });
 });
-
-  
 

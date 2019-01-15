@@ -6,16 +6,12 @@ dotenv.config();
 
 class ClientController {
   constructor() {
-    if (process.env.NODE_ENV === 'development') {
-   	this._connectionString = process.env.DATABASE_URL;
-    } else if (process.env.NODE_ENV === 'test') {
-   	this._connectionString = process.env.DATABASE_TEST_URL;
-    }
+    this._connectionString = process.env.DATABASE_URL;
     this._client = new Client({
       connectionString: this._connectionString,
     });
     this._client.connect()
-      .then(() => console.log('Connection to database was successfully established'))
+      .then(() => console.log('Connection successful'))
       .catch(err => console.log(err.message));
   }
 }
