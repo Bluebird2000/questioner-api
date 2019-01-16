@@ -12,7 +12,7 @@ const user = {
   firstname: 'Ahmad',
   lastname: 'Lateef',
   othername: 'Olamilekan',
-  email: 'vidibon2000@gmail.com',
+  email: 'tester2000@gmail.com',
   phoneNumber: '08097012219',
   username: 'Bluebird2000',
   password: 'default111',

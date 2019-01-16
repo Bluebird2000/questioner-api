@@ -3,8 +3,9 @@ import { Client } from 'pg';
 
 dotenv.config();
 
-const { DATABASE_URL } = process.env;
-const connectionString = DATABASE_URL;
+const { DATABASE_TEST_URL } = process.env;
+
+const connectionString = DATABASE_TEST_URL;
 console.log(connectionString);
 const client = new Client({
   connectionString,
@@ -14,7 +15,7 @@ client.connect((err) => {
     console.log(err.message);
     client.end();
   } else {
-    console.log('connection to development server established');
+    console.log('connection to test server established');
   }
 });
 
@@ -81,6 +82,7 @@ const createTestMeetup = `INSERT INTO meetups(
           NOW()
           )`;
 
+
 const tableQuery = `${userTableQuery} ; ${createTestUser} ; ${meetupTableQuery} ; ${createTestMeetup}`;
 client.query(tableQuery, (error) => {
   client.end();
@@ -88,5 +90,5 @@ client.query(tableQuery, (error) => {
     console.log(error.message);
     return;
   }
-  console.log('database migration was successful for development server');
+  console.log('database migration was successful for test server');
 });

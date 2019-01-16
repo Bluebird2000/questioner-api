@@ -3,7 +3,7 @@ import { Client } from 'pg';
 
 dotenv.config();
 
-const connectionString = process.env.DATABASE_TEST_URL;
+const connectionString = process.env.DATABASE_URL;
 const client = new Client({
   connectionString,
 });
@@ -13,7 +13,7 @@ client.connect((err) => {
     console.log(err.message);
     client.end();
   } else {
-    console.log('connection to test server established');
+    console.log(`connection to ${connectionString} server established`);
   }
 });
 
@@ -26,5 +26,5 @@ client.query(tableQuery, (error) => {
     console.log(error.message);
     return;
   }
-  console.log('Truncate tables before each test run', process.env.NODE_ENV);
+  console.log('Truncate tables before each test run');
 });
