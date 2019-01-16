@@ -11,7 +11,7 @@ class ClientController {
       connectionString: this._connectionString,
     });
     this._client.connect()
-      .then(() => console.log('Connection successful'))
+      .then(() => console.log())
       .catch(err => console.log(err.message));
   }
 }
