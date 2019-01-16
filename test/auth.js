@@ -30,19 +30,19 @@ describe('POST / Users', () => {
   });
 });
 
-describe('POST / User login', () => {
-  it('should return 200 status and login an existing user', (done) => {
-    let loginInfo = {
-      email: user.email,
-      password: user.password
-    }
-    chai.request(app)
-      .post('/api/v1/auth/login')
-      .send(loginInfo)
-      .end((err, res) => {
-        res.should.have.status(200);
-        done();
-      }) 
-  });
-});
+// describe('POST / User login', () => {
+//   it('should return 200 status and login an existing user', (done) => {
+//     let loginInfo = {
+//       email: user.email,
+//       password: user.password
+//     }
+//     chai.request(app)
+//       .post('/api/v1/auth/login')
+//       .send(loginInfo)
+//       .end((err, res) => {
+//         res.should.have.status(200);
+//         done();
+//       }) 
+//   });
+// });
 
