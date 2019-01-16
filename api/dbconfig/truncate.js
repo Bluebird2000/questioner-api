@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 import { Client } from 'pg';
+import dbconfig from './database';
 
 dotenv.config();
 
-const connectionString = process.env.DATABASE_URL;
+const connectionString = dbconfig.development;
 const client = new Client({
   connectionString,
 });
-console.log(connectionString);
 client.connect((err) => {
   if (err) {
     console.log(err.message);

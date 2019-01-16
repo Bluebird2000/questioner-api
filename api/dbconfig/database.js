@@ -2,10 +2,20 @@ import dotenv from 'dotenv';
 import { Client } from 'pg';
 
 dotenv.config();
+let connectionString;
 
-const { DATABASE_URL } = process.env;
-const connectionString = DATABASE_URL;
-console.log(connectionString);
+const dbconfig = {
+  development: process.env.DATABASE_URL,
+  test: process.env.DATABASE_TEST_URL,
+};
+
+if (process.env.NODE_ENV === 'development') {
+  connectionString = dbconfig.development;
+  console.log(connectionString);
+} else if (process.env.NODE_ENV === 'test') {
+  connectionString = dbconfig.test;
+  console.log(connectionString, 'oo');
+}
 const client = new Client({
   connectionString,
 });
@@ -14,7 +24,7 @@ client.connect((err) => {
     console.log(err.message);
     client.end();
   } else {
-    console.log('connection to development server established');
+    console.log('connection to server established');
   }
 });
 
@@ -88,5 +98,7 @@ client.query(tableQuery, (error) => {
     console.log(error.message);
     return;
   }
-  console.log('database migration was successful for development server');
+  console.log('Database migration successful');
 });
+
+export default dbconfig;
