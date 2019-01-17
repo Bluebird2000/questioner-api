@@ -4,26 +4,17 @@ import MeetupController from '../controllers/meetupsController';
 import authorization from '../middleware/authorization/auth';
 
 const router = express.Router();
-const meetup = new MeetupController();
 
-router.get('/meetups', (req, res, next) => {
-  meetup.getAllMeetups(req, res, next);
-});
+// router.post('/meetups', authorization.isValid, MeetupController.createMeetup);
 
-// router.get('/meetups/upcomings', (req, res, next) => {
-//   meetup.getUpcomingMeetup(req, res, next);
-// });
+router.get('/meetups', MeetupController.getAllMeetups);
 
-router.get('/meetups/:id', (req, res, next) => {
-  meetup.getSingleMeetup(req, res, next);
-});
+router.get('/meetups/upcomings', MeetupController.upcomingMeetups);
 
-router.put('/meetups/:id', [authorization.isValid], (req, res, next) => {
-  meetup.updateSingleMeetup(req, res, next);
-});
+router.get('/meetups/:id', MeetupController.getSingleMeetup);
 
-router.delete('/meetups/:id', [authorization.isValid], (req, res, next) => {
-  meetup.deleteSingleMeetup(req, res, next);
-});
+// router.put('/meetups/:id', authorization.isValid, MeetupController.updateSingleMeetup);
+
+router.delete('/meetups/:id', authorization.isValid, MeetupController.deleteSingleMeetup);
 
 export default router;

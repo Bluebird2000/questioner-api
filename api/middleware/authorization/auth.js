@@ -7,7 +7,7 @@ class Auth {
 Auth.isValid = (req, res, next) => {
   try {
     // Removes Bearer keyword and takes the token after the space
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.token;
     req.userData = jwt.verify(token, process.env.JWT_KEY);
     next();
   } catch (error) {
