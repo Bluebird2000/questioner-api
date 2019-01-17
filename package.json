@@ -8,10 +8,10 @@
     "start": "npm run build && node ./dist/server",
     "lintfix": "eslint . --fix",
     "migrate": "babel-node api/dbconfig/database",
+    "truncate": "babel-node api/dbconfig/truncate",
     "dev": "nodemon --exec babel-node api/server.js",
-    "pretest": "eslint .",
-    "test": "babel-node node_modules/mocha/bin/_mocha test/*.js",
-    "coverage": "babel-node ./node_modules/babel-istanbul/lib/cli cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec --timeout 10000 test/*.js",
+    "test": "cross-env NODE_ENV=test && npm run truncate && babel-node node_modules/mocha/bin/_mocha --timeout 10000 test/*.js --exit",
+    "coverage": "npm run truncate && babel-node ./node_modules/babel-istanbul/lib/cli cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec --timeout 10000 test/*.js --exit",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "engines": {
@@ -34,13 +34,15 @@
   "homepage": "https://github.com/Bluebird2000/Questioner-api#readme",
   "dependencies": {
     "babel-istanbul": "^0.12.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "cross-env": "^5.2.0",
     "dotenv": "^6.0.0",
     "eslint-config-airbnb": "^17.1.0",
     "express": "^4.16.4",
+    "express-validation": "^1.0.2",
     "joi": "^13.4.0",
     "jsonwebtoken": "^8.4.0",
-    "bcryptjs": "^2.4.3",
     "pg": "^7.7.1"
   },
   "devDependencies": {
