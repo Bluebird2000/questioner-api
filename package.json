@@ -10,7 +10,7 @@
     "migrate": "babel-node api/dbconfig/database",
     "truncate": "babel-node api/dbconfig/truncate",
     "dev": "nodemon --exec babel-node api/server.js",
-    "test": "cross-env NODE_ENV=test && npm run truncate && babel-node node_modules/mocha/bin/_mocha --timeout 10000 test/*.js --exit",
+    "test": "cross-env NODE_ENV=test && npm run truncate && babel-node node_modules/mocha/bin/_mocha --timeout 20000 test/*.js --exit",
     "coverage": "npm run truncate && babel-node ./node_modules/babel-istanbul/lib/cli cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec --timeout 10000 test/*.js --exit",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },

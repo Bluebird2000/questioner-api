@@ -7,7 +7,7 @@ import db from '../dbconfig/config';
 dotenv.config();
 const AuthController = {
   /**
-   * Create A Reflection
+   * Create A User
    * @param {object} req
    * @param {object} res
    * @returns {object} users object

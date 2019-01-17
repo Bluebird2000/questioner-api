@@ -8,6 +8,13 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
+const userCredentials = {
+  email: 'tester@questioner.com', 
+  password: 'default111'
+}
+
+let token = '';
+
 const user = {
   firstname: 'Ahmad',
   lastname: 'Lateef',
@@ -18,31 +25,31 @@ const user = {
   password: 'default111',
 };
 
-describe('POST / Users', () => {
-  it('should return status code 201 and create a new user account', (done) => {
+describe('Auth route', ()=>{
+  it('should return 201 status and create a new user', (done)=>{
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(user)
       .end((err, res) => {
         res.should.have.status(201);
+        res.body.data.should.be.a('array');
         done();
-      });
+      })    
   });
-});
 
-// describe('POST / User login', () => {
-//   it('should return 200 status and login an existing user', (done) => {
-//     let loginInfo = {
-//       email: user.email,
-//       password: user.password
-//     }
-//     chai.request(app)
-//       .post('/api/v1/auth/login')
-//       .send(loginInfo)
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         done();
-//       }) 
-//   });
-// });
+  it('should return 200 status and login an existing user', (done)=>{
+    let loginInfo = {
+      email: user.email,
+      password: user.password
+    }
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send(loginInfo)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.data.should.be.a('object');
+        done();
+      })    
+  }) 
+})
 
