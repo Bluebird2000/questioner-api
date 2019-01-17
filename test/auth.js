@@ -28,16 +28,6 @@ describe('POST / Users', () => {
         done();
       });
   });
-    it('should return status code 400 if api parameters are not valid', (done) => {
-    const newUser = ({});
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send(newUser)
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
 });
 
 // describe('POST / User login', () => {
