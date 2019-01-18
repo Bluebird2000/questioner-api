@@ -4,12 +4,6 @@ import chaiHttp from 'chai-http';
 
 import app from '../api/server';
 
-import jwt from 'jsonwebtoken';
-
-import dotenv from 'dotenv';
-dotenv.config();
-
-
 const should = chai.should();
 
 chai.use(chaiHttp);
@@ -18,7 +12,7 @@ const userCredentials = {
   email: 'tester@questioner.com', 
   password: 'default111'
 }
-let token = jwt.sign(userCredentials, process.env.JWT_KEY);
+let token = '';
 let randNum = Math.floor(Math.random() * 125);
 const user = {
   firstname: 'Ahmad',
@@ -30,16 +24,16 @@ const user = {
   password: 'default111',
 };
 
-// before((done) =>{
-//    chai.request(app)
-//     .post('/api/v1/auth/login')
-//     .send(userCredentials)
-//     .end((err, res) => {
-//       token = res.body.data.token;
-//       res.should.have.status(200)
-//       done();
-//     });
-// });
+before((done) =>{
+   chai.request(app)
+    .post('/api/v1/auth/login')
+    .send(userCredentials)
+    .end((err, res) => {
+      token = res.body.data.token;
+      res.should.have.status(200)
+      done();
+    });
+});
 
 describe('Authentication route', ()=>{
   it('should return status 201 and create a new user', (done)=>{
