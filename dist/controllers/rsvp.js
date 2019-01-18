@@ -1,5 +1,8 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 var rsvps = [{
   id: 1,
   meetup: 1,
@@ -22,28 +25,29 @@ var meetups = [{
   happeningOn: '2019-01-03',
   tags: ['laravel', 'Django', 'python']
 }];
-
-exports.create_rsvp_response = function (req, res) {
-  var meetup = meetups.find(function (m) {
-    return m.id === parseInt(req.params.id);
-  });
-  if (!meetup) {
-    res.status(404).send({
-      status: 404,
-      error: 'Meetup with the given ID: ' + req.params.id + ' does not exist'
+exports.default = {
+  rsvpResponse: function rsvpResponse(req, res) {
+    var data = meetups.find(function (meetup) {
+      return meetup.id === parseInt(req.params.id);
     });
-    return;
+    if (!data) {
+      res.status(404).send({
+        status: 404,
+        error: 'Meetup with the given ID: ' + req.params.id + ' does not exist'
+      });
+      return;
+    }
+    var rsvp = {
+      id: rsvps.length + 1,
+      meetup: req.body.meetup,
+      user: req.body.user,
+      topic: req.body.topic,
+      response: req.body.response
+    };
+    rsvps.push(rsvp);
+    res.status(201).send({
+      status: 201,
+      rsvp: rsvp
+    });
   }
-  var rsvp = {
-    id: rsvps.length + 1,
-    meetup: req.body.meetup,
-    user: req.body.user,
-    topic: req.body.topic,
-    response: req.body.response
-  };
-  rsvps.push(rsvp);
-  res.status(200).send({
-    status: 200,
-    data: [rsvp]
-  });
 };

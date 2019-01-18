@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -16,9 +20,9 @@ var _meetups = require('./routes/meetups');
 
 var _meetups2 = _interopRequireDefault(_meetups);
 
-var _meetupquestions = require('./routes/meetupquestions');
+var _questions = require('./routes/questions');
 
-var _meetupquestions2 = _interopRequireDefault(_meetupquestions);
+var _questions2 = _interopRequireDefault(_questions);
 
 var _rsvp = require('./routes/rsvp');
 
@@ -29,12 +33,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _express2.default)();
 app.use(_bodyParser2.default.json());
 
-app.use('/api/v1/users', _users2.default);
+app.use('/api/v1', _users2.default);
 
-app.use('/api/v1/meetups', _meetups2.default);
+app.use('/api/v1', _meetups2.default);
 
-app.use('/api/v1/questions', _meetupquestions2.default);
+app.use('/api/v1', _questions2.default);
 
 app.use('/api/v1', _rsvp2.default);
 
-module.exports = app;
+exports.default = app;

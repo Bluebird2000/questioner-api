@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -12,6 +16,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var router = _express2.default.Router();
 
-router.post('/meetups/:id/rsvps', _rsvp2.default.create_rsvp_response);
+router.post('/meetups/:id/rsvps', _rsvp2.default.rsvpResponse);
 
-module.exports = router;
+exports.default = router;
