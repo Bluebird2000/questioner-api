@@ -4,26 +4,34 @@ import chaiHttp from 'chai-http';
 
 import app from '../api/server';
 
-chai.should();
+import jwt from 'jsonwebtoken';
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+
+const should = chai.should();
+
+chai.use(chaiHttp);
+
 const userCredentials = {
   email: 'tester@questioner.com', 
   password: 'default111'
 }
-let token = '';
+let token = jwt.sign(userCredentials, process.env.JWT_KEY);
 
-before(function(done){
-   chai.request(app)
-    .post('/api/v1/auth/login')
-    .send(userCredentials)
-    .end(function(err, res){
-      if(err) throw new Error('failed');
-      token = res.body.data.token;
-      res.should.have.status(200)
-      done();
-    });
-});
 
-chai.use(chaiHttp);
+// before((done) => {
+//    chai.request(app)
+//     .post('/api/v1/auth/login')
+//     .send(userCredentials)
+//     .end((err, res) => {
+//       token = res.body.data.token;
+//       res.should.have.status(200)
+//       done();
+//     });
+// });
+
 
 describe('GET / All meetup records', () => {
   it('it should return status code 200 and get list of created meetups', (done) => {
