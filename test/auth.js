@@ -12,21 +12,31 @@ const userCredentials = {
   email: 'tester@questioner.com', 
   password: 'default111'
 }
-
 let token = '';
-
+let randNum = Math.floor(Math.random() * 125);
 const user = {
   firstname: 'Ahmad',
   lastname: 'Lateef',
   othername: 'Olamilekan',
-  email: 'tester2000@gmail.com',
+  email: `test${randNum}@example.com`,
   phoneNumber: '08097012219',
   username: 'Bluebird2000',
   password: 'default111',
 };
 
-describe('Auth route', ()=>{
-  it('should return 201 status and create a new user', (done)=>{
+before(function(done){
+   chai.request(app)
+    .post('/api/v1/auth/login')
+    .send(userCredentials)
+    .end(function(err, res){
+      token = res.body.data.token;
+      res.should.have.status(200)
+      done();
+    });
+});
+
+describe('Authentication route', ()=>{
+  it('should return status 201 status and create a new user', (done)=>{
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(user)
@@ -36,7 +46,6 @@ describe('Auth route', ()=>{
         done();
       })    
   });
-
   it('should return 200 status and login an existing user', (done)=>{
     let loginInfo = {
       email: user.email,
