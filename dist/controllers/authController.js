@@ -27,7 +27,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 _dotenv2.default.config();
 var AuthController = {
   /**
-   * Create A User
    * @param {object} req
    * @param {object} res
    * @returns {object} users object
