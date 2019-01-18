@@ -16,6 +16,7 @@ before(function(done){
     .post('/api/v1/auth/login')
     .send(userCredentials)
     .end(function(err, res){
+      if(err) throw new Error('failed');
       token = res.body.data.token;
       res.should.have.status(200)
       done();
@@ -44,4 +45,33 @@ describe('GET / single meetup', () => {
         done();
       });
   });
+});
+
+describe('DELETE / single meetup', () => {
+  it('should return status code 401 if unauthorized', (done) => {
+    chai.request(app)
+      .delete('/api/v1/meetups/1')
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+  // it('should return status code 404 if meetup to be deleted not found', (done) => {
+  //   chai.request(app)
+  //     .delete('/api/v1/meetups/-1')
+  //     .set('token', `${token}`)
+  //     .end((err, res) => {
+  //       res.should.have.status(404);
+  //       done();
+  //     });
+  // });
+  // it('should return status code 204 if meetup was deleted successful', (done) => {
+  //   chai.request(app)
+  //     .delete('/api/v1/meetups/1')
+  //     .set('token', `${token}`)
+  //     .end((err, res) => {
+  //       res.should.have.status(204);
+  //       done();
+  //     });
+  // });
 });

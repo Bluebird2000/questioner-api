@@ -88,7 +88,7 @@ const MeetupController = {
       SET location=$1,topic=$2,happeningOn=$3,updated_at=$4
       WHERE meetup_id=$5 returning *`;
     try {
-      const { rows } = await db.query(findOneQuery, [req.params.id]);
+      const { rows } = await db.query(findOneQuery, [req.params.meetup_id]);
       if (!rows[0]) {
         return res.status(404).send({
           message: 'Meetup record not found',
@@ -110,7 +110,7 @@ const MeetupController = {
   },
 
   async delete(req, res) {
-    const deleteQuery = 'DELETE FROM reflections WHERE meetup_id=$1 returning *';
+    const deleteQuery = 'DELETE * FROM meetups WHERE meetup_id=$1 returning *';
     try {
       const { rows } = await db.query(deleteQuery, [req.params.meetup_id]);
       if (!rows[0]) {
@@ -119,7 +119,7 @@ const MeetupController = {
         });
       }
       return res.status(204).send({
-        message: 'Meetup record deleted',
+        message: rows[0],
       });
     } catch (error) {
       return res.status(400).send(error);
