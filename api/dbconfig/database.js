@@ -38,7 +38,6 @@ const userTableQuery = `DROP TABLE IF EXISTS users cascade;
           phoneNumber VARCHAR(255), 
           username VARCHAR(255), 
           password TEXT NOT NULL, 
-          isAdmin VARCHAR(255), 
           created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
           updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW())`;
 
@@ -50,7 +49,6 @@ const createTestUser = `INSERT INTO users(
           phoneNumber, 
           username, 
           password, 
-          isAdmin, 
           created_at, 
           updated_at
           )
@@ -62,7 +60,6 @@ const createTestUser = `INSERT INTO users(
           '08097012219', 
           'Bluebird2000', 
           '$2a$10$HlG7pZklq8YqxvCmj6JNxuM9Gwuk/5cRzt4uARUNIJVqUNWlxBtQS', 
-          'true', 
           NOW(), 
           NOW()
           )`;

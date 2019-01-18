@@ -5,16 +5,16 @@ import authorization from '../middleware/authorization/auth';
 
 const router = express.Router();
 
-// router.post('/meetups', authorization.isValid, MeetupController.createMeetup);
+router.post('/meetups', authorization.isValid, MeetupController.create);
 
-router.get('/meetups', MeetupController.getAllMeetups);
+router.get('/meetups', MeetupController.getAll);
 
-router.get('/meetups/upcomings', MeetupController.upcomingMeetups);
+router.get('/meetups/upcomings', MeetupController.upcoming);
 
-router.get('/meetups/:id', MeetupController.getSingleMeetup);
+router.get('/meetups/:meetup_id', MeetupController.getOne);
 
-// router.put('/meetups/:id', authorization.isValid, MeetupController.updateSingleMeetup);
+router.put('/meetups/:id', authorization.isValid, MeetupController.update);
 
-router.delete('/meetups/:id', authorization.isValid, MeetupController.deleteSingleMeetup);
+router.delete('/meetups/:id', authorization.isValid, MeetupController.delete);
 
 export default router;
