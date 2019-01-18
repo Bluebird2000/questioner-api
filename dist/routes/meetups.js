@@ -1,27 +1,35 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _meetups = require('../controllers/meetups');
+var _meetupsController = require('../controllers/meetupsController');
 
-var _meetups2 = _interopRequireDefault(_meetups);
+var _meetupsController2 = _interopRequireDefault(_meetupsController);
+
+var _auth = require('../middleware/authorization/auth');
+
+var _auth2 = _interopRequireDefault(_auth);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
 
-router.post('/', _meetups2.default.create_meetup);
+router.post('/meetups', _auth2.default.isValid, _meetupsController2.default.create);
 
-router.get('/', _meetups2.default.get_all_meetups);
+router.get('/meetups', _meetupsController2.default.getAll);
 
-router.get('/:id', _meetups2.default.get_single_meetup);
+router.get('/meetups/upcomings', _meetupsController2.default.upcoming);
 
-router.get('/upcomings/meetup', _meetups2.default.get_upcoming_meetups);
+router.get('/meetups/:meetup_id', _meetupsController2.default.getOne);
 
-router.put('/:id', _meetups2.default.update_single_meetup);
+router.put('/meetups/:id', _auth2.default.isValid, _meetupsController2.default.update);
 
-router.delete('/:id', _meetups2.default.delete_single_meetup);
+router.delete('/meetups/:id', _auth2.default.isValid, _meetupsController2.default.delete);
 
-module.exports = router;
+exports.default = router;
