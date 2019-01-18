@@ -8,7 +8,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var meetupValidation = function meetupValidation(createMeetup) {
   var meetupSchema = {
-    createdOn: _joi2.default.required(),
     location: _joi2.default.string().min(2).max(250).required(),
     topic: _joi2.default.string().min(3).max(100).required(),
     happeningOn: _joi2.default.required(),
