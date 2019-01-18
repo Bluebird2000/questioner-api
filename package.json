@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/Bluebird2000/Questioner-api#readme",
   "dependencies": {
+    "@babel/runtime": "^7.2.0",
     "babel-istanbul": "^0.12.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
