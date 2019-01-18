@@ -29,7 +29,6 @@ before(function(done){
     .post('/api/v1/auth/login')
     .send(userCredentials)
     .end(function(err, res){
-      if(err) throw new Error('failed');
       token = res.body.data.token;
       res.should.have.status(200)
       done();
