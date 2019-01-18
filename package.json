@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "babel api -d dist",
-    "start": "npm run build && node ./dist/server",
+    "start": "npm run build && npm run migrate && node ./dist/server",
     "lintfix": "eslint . --fix",
     "migrate": "babel-node api/dbconfig/database",
     "truncate": "babel-node api/dbconfig/truncate",
