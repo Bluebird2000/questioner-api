@@ -8,23 +8,23 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-const userCredentials = {
+
+describe('Authentication route', () => {
+  const userCredentials = {
   email: 'tester@questioner.com',
   password: 'default111',
 };
-let token;
-const randNum = Math.floor(Math.random() * 125);
-const user = {
-  firstname: 'Ahmad',
-  lastname: 'Lateef',
-  othername: 'Olamilekan',
-  email: `test${randNum}@example.com`,
-  phoneNumber: '08097012219',
-  username: 'Bluebird2000',
-  password: 'default111',
-};
-
-describe('Authentication route', () => {
+  let token;
+  const randNum = Math.floor(Math.random() * 125);
+  const user = {
+    firstname: 'Ahmad',
+    lastname: 'Lateef',
+    othername: 'Olamilekan',
+    email: `test${randNum}@example.com`,
+    phoneNumber: '08097012219',
+    username: 'Bluebird2000',
+    password: 'default111',
+  };
   before((done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
