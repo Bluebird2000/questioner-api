@@ -11,7 +11,7 @@ chai.use(chaiHttp);
   email: 'tester@questioner.com',
   password: 'default111',
 };
-let token;
+let token = '';
 var authenticatedUser = chai.request(app);
 describe('Meetup Authentication route handler', () => {
   before(function(done){
@@ -22,7 +22,7 @@ describe('Meetup Authentication route handler', () => {
         if (err) {
           return done(err);
         }
-        token = res.body.token;
+        token = res.body.data.token;
         done();
       });
   });
@@ -39,6 +39,35 @@ describe('Meetup Authentication route handler', () => {
       .get('/api/v1/meetups/1')
       .end((err, res) => {
         res.should.have.status(200);
+        done();
+      });
+  });
+  it('should return status code 401, user is not allowed to delete meetup record', (done) => {
+    chai.request(app)
+      .delete('/api/v1/meetups/1')
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+});
+describe('DELETE / single meetup', () => {
+  before((done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send(userCredentials)
+      .end((err, res) => {
+        if (err) throw err;
+        token = res.body.data.token;
+        res.should.have.status(200);
+        done();
+      });
+  });
+  it('should return status code 401 if unauthorized', (done) => {
+    chai.request(app)
+      .delete('/api/v1/meetups/1')
+      .end((err, res) => {
+        res.should.have.status(401);
         done();
       });
   });
