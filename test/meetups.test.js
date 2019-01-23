@@ -6,18 +6,18 @@ import app from '../api/server';
 
 chai.should();
 const userCredentials = {
-  email: 'tester@questioner.com', 
-  password: 'default111'
-}
+  email: 'tester@questioner.com',
+  password: 'default111',
+};
 let token = '';
 
 before((done) => {
-   chai.request(app)
+  chai.request(app)
     .post('/api/v1/auth/login')
     .send(userCredentials)
     .end((err, res) => {
       token = res.body.data.token;
-      res.should.have.status(200)
+      res.should.have.status(200);
       done();
     });
 });

@@ -9,11 +9,11 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 const userCredentials = {
-  email: 'tester@questioner.com', 
-  password: 'default111'
-}
+  email: 'tester@questioner.com',
+  password: 'default111',
+};
 let token = '';
-let randNum = Math.floor(Math.random() * 125);
+const randNum = Math.floor(Math.random() * 125);
 const user = {
   firstname: 'Ahmad',
   lastname: 'Lateef',
@@ -24,21 +24,20 @@ const user = {
   password: 'default111',
 };
 
-before(() =>{ 
-  it('should return status 201 and create a new user', (done)=>{
-   chai.request(app)
-    .post('/api/v1/auth/login')
-    .send(userCredentials)
-    .end((err, res) => {
-      token = res.body.data.token;
-      res.should.have.status(200)
-      done();
-    });
-});
-});
+describe('Authentication route', () => {
+  before((done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send(userCredentials)
+      .end((err, res) => {
+        if (err) throw err;
+        token = res.body.data.token;
+        res.should.have.status(200);
+        done();
+      });
+  });
 
-describe('Authentication route', ()=>{
-  it('should return status 201 and create a new user', (done)=>{
+  it('should return status 201 and create a new user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(user)
@@ -46,22 +45,22 @@ describe('Authentication route', ()=>{
         res.should.have.status(201);
         res.body.data.should.be.a('array');
         done();
-      });    
+      });
   });
-  it('should return status 409 if email already exist', (done)=>{
+  it('should return status 409 if email already exist', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(user)
       .end((err, res) => {
         res.should.have.status(409);
         done();
-      });    
+      });
   });
-  it('should return 200 status and login an existing user', (done)=>{
-    let loginInfo = {
+  it('should return 200 status and login an existing user', (done) => {
+    const loginInfo = {
       email: user.email,
-      password: user.password
-    }
+      password: user.password,
+    };
     chai.request(app)
       .post('/api/v1/auth/login')
       .send(loginInfo)
@@ -69,34 +68,33 @@ describe('Authentication route', ()=>{
         res.should.have.status(200);
         res.body.data.should.be.a('object');
         done();
-      });    
+      });
   });
-  it('should return 404 if email provided for login does not exist', (done)=>{
-    let loginInfo = {
+  it('should return 404 if email provided for login does not exist', (done) => {
+    const loginInfo = {
       email: `vidibon${randNum}@questioner.com`,
-      password: user.password
-    }
+      password: user.password,
+    };
     chai.request(app)
       .post('/api/v1/auth/login')
       .send(loginInfo)
       .end((err, res) => {
         res.should.have.status(404);
         done();
-      });    
+      });
   });
-  it('should return 422 if user credentials are not valid', (done)=>{
-    let loginInfo = {
+  it('should return 422 if user credentials are not valid', (done) => {
+    const loginInfo = {
       email: user.email,
-      password: `vidibon${randNum}`
-    }
+      password: `vidibon${randNum}`,
+    };
     chai.request(app)
       .post('/api/v1/auth/login')
       .send(loginInfo)
       .end((err, res) => {
         res.should.have.status(422);
         done();
-      });    
-    });
-  it
+      });
+  });
+  it;
 });
-
