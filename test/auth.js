@@ -12,7 +12,7 @@ const userCredentials = {
   email: 'tester@questioner.com',
   password: 'default111',
 };
-let token = '';
+let token;
 const randNum = Math.floor(Math.random() * 125);
 const user = {
   firstname: 'Ahmad',
@@ -31,7 +31,7 @@ describe('Authentication route', () => {
       .send(userCredentials)
       .end((err, res) => {
         if (err) throw err;
-        token = res.body.data.token;
+        token = res.body.token;
         res.should.have.status(200);
         done();
       });

@@ -9,7 +9,7 @@ const userCredentials = {
   email: 'tester@questioner.com',
   password: 'default111',
 };
-let token = '';
+let token;
 
 
 chai.use(chaiHttp);
@@ -43,7 +43,7 @@ describe('DELETE / single meetup', () => {
       .send(userCredentials)
       .end((err, res) => {
         if (err) throw err;
-        token = res.body.data.token;
+        token = res.body.token;
         res.should.have.status(200);
         done();
       });
