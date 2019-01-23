@@ -5,14 +5,51 @@ import chaiHttp from 'chai-http';
 import app from '../api/server';
 
 chai.should();
+
+chai.use(chaiHttp);
+  const userCredentials = {
+  email: 'tester@questioner.com',
+  password: 'default111',
+};
+let token;
+var authenticatedUser = chai.request(app);
+describe('Meetup Authentication route handler', () => {
+  before(function(done){
+    authenticatedUser
+      .post('/api/v1/auth/login')
+      .send(userCredentials)
+      .end(function(err, res){
+        if (err) {
+          return done(err);
+        }
+        token = res.body.token;
+        done();
+      });
+  });
+  it('it should return status code 200 and get list of created meetups', (done) => {
+    chai.request(app)
+      .get('/api/v1/meetups')
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+  it('should return status code 200 if meetup record exist', (done) => {
+    chai.request(app)
+      .get('/api/v1/meetups/1')
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});
+
+
 // const userCredentials = {
 //   email: 'tester@questioner.com',
 //   password: 'default111',
 // };
 // let token;
-
-
-chai.use(chaiHttp);
 
 // describe('GET / All meetup records', () => {
 //   it('it should return status code 200 and get list of created meetups', (done) => {

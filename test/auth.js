@@ -7,6 +7,143 @@ import app from '../api/server';
 const should = chai.should();
 
 chai.use(chaiHttp);
+  const userCredentials = {
+  email: 'tester@questioner.com',
+  password: 'default111',
+};
+let token;
+var authenticatedUser = chai.request(app);
+describe('Authentication route handler', () => {
+  before(function(done){
+    authenticatedUser
+      .post('/api/v1/auth/login')
+      .send(userCredentials)
+      .end(function(err, res){
+        if (err) {
+          return done(err);
+        }
+        token = res.body.token;
+        done();
+      });
+  });
+  // it('should return status 201 and create a new user', (done) => {
+  //     chai.request(app)
+  //       .post('/api/v1/auth/signup')
+  //       .send(user)
+  //       .end((err, res) => {
+  //         res.should.have.status(201);
+  //         res.body.data.should.be.a('array');
+  //         done();
+  //       });
+  // });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // describe('Authentication route', () => {
