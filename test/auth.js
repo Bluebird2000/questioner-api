@@ -96,5 +96,4 @@ describe('Authentication route', () => {
         done();
       });
   });
-  it;
 });
