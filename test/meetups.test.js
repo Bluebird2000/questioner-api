@@ -51,27 +51,27 @@ describe('Meetup Authentication route handler', () => {
       });
   });
 });
-describe('DELETE / single meetup', () => {
-  before((done) => {
-    chai.request(app)
-      .post('/api/v1/auth/login')
-      .send(userCredentials)
-      .end((err, res) => {
-        if (err) throw err;
-        token = res.body.data.token;
-        res.should.have.status(200);
-        done();
-      });
-  });
-  it('should return status code 401 if unauthorized', (done) => {
-    chai.request(app)
-      .delete('/api/v1/meetups/1')
-      .end((err, res) => {
-        res.should.have.status(401);
-        done();
-      });
-  });
-});
+// describe('DELETE / single meetup', () => {
+//   before((done) => {
+//     chai.request(app)
+//       .post('/api/v1/auth/login')
+//       .send(userCredentials)
+//       .end((err, res) => {
+//         if (err) throw err;
+//         token = res.body.data.token;
+//         res.should.have.status(200);
+//         done();
+//       });
+//   });
+//   it('should return status code 401 if unauthorized', (done) => {
+//     chai.request(app)
+//       .delete('/api/v1/meetups/1')
+//       .end((err, res) => {
+//         res.should.have.status(401);
+//         done();
+//       });
+//   });
+// });
 
 
 // const userCredentials = {
