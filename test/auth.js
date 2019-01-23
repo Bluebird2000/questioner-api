@@ -24,7 +24,8 @@ const user = {
   password: 'default111',
 };
 
-before((done) =>{
+before(() =>{ 
+  it('should return status 201 and create a new user', (done)=>{
    chai.request(app)
     .post('/api/v1/auth/login')
     .send(userCredentials)
@@ -33,6 +34,7 @@ before((done) =>{
       res.should.have.status(200)
       done();
     });
+});
 });
 
 describe('Authentication route', ()=>{
